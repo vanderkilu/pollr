@@ -1,0 +1,112 @@
+<template>
+  <div class="wrapper">
+    <app-header-main>
+      <router-link :to="{}" class="btn-cta">create poll now</router-link>
+      <router-link :to="{}" class="login">Login here 👉</router-link>
+    </app-header-main>
+    <section class="wrapper__main">
+      <h3 class="wrapper__main-text">Poll Collections</h3>
+      <div class="category">
+          <router-link :to="{}" v-for="category in categories" :key="category.id" class="link">
+               <div class="category__card">
+                    <div class="category__card-background" :class="generateClass">
+                        <p>{{category.count}}</p>
+                    </div>
+                    <h5>{{category.name}}</h5>
+                </div>
+          </router-link>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+import HeaderMain from "./HeaderMain.vue";
+export default {
+  data() {
+    return {
+        classes: ['c-1','c-2', 'c-3'],
+        categories: [
+            {
+            id: 1,
+            count: 20,
+            name: "Technology"
+            },
+            {
+            id: 2,
+            count: 550,
+            name: "Science Fiction"
+            },
+            {
+            id: 3,
+            count: 900,
+            name: "Entertainment"
+            },
+        ]
+    };
+  },
+  computed: {
+      generateClass() {
+          let num = Math.floor(Math.random() * 3)
+          return this.classes[num]
+      }
+  },
+  components: {
+    appHeaderMain: HeaderMain
+  }
+};
+</script>
+
+
+<style scoped>
+.wrapper__main {
+  padding: 8rem 10rem;
+  background-color: whitesmoke;
+}
+.wrapper__main-text {
+  font-size: 2rem;
+  margin-bottom: 5rem;
+}
+.category {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+  font-size: 1.5rem;
+}
+.category__card {
+  padding: 2rem;
+  border-radius: 3px;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.03);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.category__card-background {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.c-1 {
+    background-color: #ede7f6;
+    color: #673ab7;
+}
+.c-2 {
+    background-color: #fce4ec;
+    color: #d81b60;
+}
+.c-3 {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+.link {
+    color: black;
+}
+</style>

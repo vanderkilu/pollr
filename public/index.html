@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>poll-ui</title>
+  </head>
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      box-sizing: border-box;
+      font-size: 62.5%;
+    }
+    a:link, a:visited {
+      text-decoration: none;
+      color: white;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      font-weight: 300;
+      background-color: ghostwhite;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .poll-card::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #5cdb95;
+    position: absolute;
+    top: 0;
+    left: 0;
+    }
+    .poll-card {
+        padding: 2rem 0.5rem;
+        background-color: white;
+        box-shadow: 0 1.2rem 2.2rem rgba(0, 0, 0, 0.04);
+        border-radius: 3px;
+        text-align: center;
+        position: relative;
+        margin-bottom: 1rem;
+    }
+    .form-container {
+    display: inline-block;
+    padding: 2rem;
+    background-color:white;
+    border-radius: 3px;
+    width: 20rem;
+    margin: 5rem;
+    box-shadow: 0 2rem 4rem rgba(0,0,0,0.03);
+}
+    .btn-custom {
+        padding: 0.5rem 2rem;
+        background-color: #5cdb95;
+        border-radius: 3px;
+        color:white;
+    }
+    input {
+        padding: 0.5rem 1rem;
+        margin: 1.5rem 0;
+        border-radius: 3px;
+        background-color: ghostwhite;
+        border: 1px solid #5cdb95;
+        transition: all 0.8s;
+    }
+    input:focus {
+        outline: none;
+        padding: 0.5rem 1.2rem;
+    }
+    ::-webkit-input-placeholder {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    :-moz-placeholder { 
+      text-align: center;  
+    }
+
+    ::-moz-placeholder {  
+      text-align: center;  
+    }
+
+    :-ms-input-placeholder {  
+      text-align: center; 
+    }
+    a:link, a:visited {
+        text-decoration: none;
+    }
+    .btn:focus,.btn:active, .btn:hover {
+      outline: none !important;
+      box-shadow: none;
+      color: white;
+    }
+    .text-red {
+        color: red;
+    }
+    .home-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.03);
+    position: fixed;
+    top:10rem;
+    left: 4rem;
+}
+.text-green {
+    color: #5cdb95;
+}
+.footer {
+        margin-top: 5rem;
+  }
+  .cp-small{
+  font-size: 2rem;
+  color: #5cdb95;
+  font-family: 'Charmonman', cursive;
+}
+  </style>
+  <body>
+    <noscript>
+      <strong>We're sorry but poll-ui doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
