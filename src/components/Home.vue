@@ -10,7 +10,7 @@
           <router-link :to="{}" v-for="category in categories" :key="category.id" class="link">
                <div class="category__card">
                     <div class="category__card-background" :class="generateClass">
-                        <p>{{category.count}}</p>
+                        <p class="category__card-count">{{category.count}}</p>
                     </div>
                     <h5>{{category.name}}</h5>
                 </div>
@@ -93,6 +93,12 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+}
+.category__card-count {
+    transition: all 0.5s;
+}
+.category__card-background:hover .category__card-count {
+    transform: rotate(90deg);
 }
 .c-1 {
     background-color: #ede7f6;

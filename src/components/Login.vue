@@ -1,24 +1,5 @@
 <template>
-    <div class="container container-main">
-        <div class="signup-card">
-            <h3 class="signup-text text-center"> Login </h3>
-            <form @submit.prevent="login">
-                <input type="text" name="email" placeholder="email" v-model="email">
-                <input  type="password" name="password" placeholder="password" v-model="password">
-                <button type="submit" class="btn btn-custom"> Login </button>
-            </form>
-        </div>
-        <div class="home-btn">
-            <router-link :to="{name: 'home'}">
-                <span><i class="fa fa-home text-green"></i></span>
-            </router-link>
-        </div>
-         <footer class="footer text-center">
-            <hr>
-            <p> &copy; copyright 2018</p>
-            <p> made with  <i class="text-red">&hearts;</i> by @kweku_kilu </p>
-        </footer>
-    </div>
+    
 </template>
 
 
