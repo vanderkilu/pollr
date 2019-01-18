@@ -26,18 +26,6 @@ export default new Router({
       path: '/auth',
       name: 'auth',
       component: Auth,
-      children: [
-        {
-          path: '/signup',
-          name: 'Signup',
-          component: Signup
-        },
-        {
-          path: '/login',
-          name: 'login',
-          component: Login
-        }
-      ]
     },
     {
       path: '/pollContainer',
