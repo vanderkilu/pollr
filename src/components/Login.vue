@@ -2,13 +2,13 @@
     <div> 
         <div class="login-card">
             <div class="content-left">
-                <h3 class="content-left__text-bold"> Hello, Friend </h3>
-                <p class="content-left__text-small">enter your personal details and start your polling now</p>
+                <h3 class="content-left__text-bold"> Welcome Back </h3>
+                <p class="content-left__text-small">enter your login details and start your polling now</p>
                 <button class="btn-auth btn-auth-transparent">sign up </button>
             </div>
             <div class="content-right">
                 <h3 class="content-right__text-bold"> Sign in to pollr</h3>
-                <form action="">
+                <form class="auth-form">
                     <input type="text" placeholder="email" class="input">
                     <input type="password" placeholder="password" class="input">
                     <button class="btn-auth btn-auth-colored">sign in </button>
@@ -52,13 +52,13 @@ export default {
 
 
 
-<style scoped>
+<style >
 .login-card {
     display: grid;
     grid-template-columns: repeat(2,1fr);
     box-shadow: 0 1rem 2rem rgba(0,0,0,0.04);
     border-radius: 4rem;
-    height: 50rem;
+    background-color: white;
 }
 .content-left {
     background-color: #673ab7;
@@ -89,7 +89,7 @@ export default {
 .content-right  {
     padding: 5rem 10rem;
 }
-form {
+.auth-form {
     display: flex;
     flex-direction: column;
     align-items: center;

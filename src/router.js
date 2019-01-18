@@ -26,6 +26,18 @@ export default new Router({
       path: '/auth',
       name: 'auth',
       component: Auth,
+      children: [
+        {
+          path: '/',
+          name: 'login',
+          component: Login,
+        },
+        {
+          path: 'signup',
+          name: 'signup',
+          component: Signup,
+        }
+      ]
     },
     {
       path: '/pollContainer',
@@ -38,7 +50,7 @@ export default new Router({
           component: Polls,
         },
         {
-          path: '/create',
+          path: 'create',
           name: 'create',
           component: PollCreate,
         },

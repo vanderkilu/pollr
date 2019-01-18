@@ -1,21 +1,13 @@
 <template>
-    <div>
-        <div class="polls-container">
-            <div class="container">
-                <div class="row">
-                    <div v-for="poll in polls" :key="poll._id" class="col-md-6">
-                        <div class="poll-card">
-                            <p>{{ poll.title }}</p>
-                            <div class="details">
-                                <p class="username">{{ poll.user.username }}</p>
-                                <p class="total-vote">{{ poll.votes.length }}</p>
-                            </div>
-                            <router-link class="poll-detail-link" :to="{name: 'poll-detail', params: {id: poll._id }}">view</router-link>
-                        </div>
-                    </div>
-                </div>
+    <div class="wrapper">
+        <router-link :to="{}" class="link">
+            <div class="poll-card">
+                <p class="poll-card__text ">cat or dogs?</p>
+                <p class="poll-card__name ">By Kweku Kilu</p>
+                <p class="poll-card__time "> 4 min ago</p>
+                <p class="poll-card__votes ">54 votes</p>
             </div>
-        </div>
+        </router-link>
     </div>
 </template>
 
@@ -54,21 +46,43 @@ export default {
 </script>
 
 <style scoped>
-.polls-container {
-    padding: 5rem 15rem;
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin: 10rem 0;
 }
-.poll-detail-link {
-    color:#8860d0;
+.poll-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 3px;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.03);
+    background-color: white;
+    font-size: 1.4rem;
+    transition: all 0.4s;
 }
-.details {
-    font-size: 0.7rem;
-    display: table;
-    margin: 0 auto;
-    padding: 1rem;
-    background-color: whitesmoke;
+.poll-card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.03);
 }
-.username {
-    
+.poll-card__name {
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
 }
-
+.poll-card__votes {
+    background-color: #fce4ec;
+    color: #d81b60;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+}
+.poll-card__time {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+.link {
+    color: black;
+}
 </style>

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     polls: [],
-    searchParam: ''
+    searchParam: '',
 
   },
   mutations: {
@@ -15,7 +15,7 @@ export default new Vuex.Store({
     },
     'SET_SEARCH'(state, param) {
       state.searchParam = param;
-    }
+    },
   },
   actions: {
     setPolls({commit}, polls) {
@@ -46,6 +46,6 @@ export default new Vuex.Store({
     },
     searchParam(state) {
       return state.searchParam;
-    }
+    },
    }
 })

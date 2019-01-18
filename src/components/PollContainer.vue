@@ -1,29 +1,52 @@
 <template>
 <div>
-    <app-header></app-header>
-    <router-view></router-view>
-    <footer class="footer text-center">
-            <hr>
-            <p> &copy; copyright 2018</p>
-            <p> made with  <i class="text-red">&hearts;</i> by @kweku_kilu </p>
-    </footer>
+    <app-header>
+         <router-link :to="{}" class="btn-cta">create poll now</router-link>
+    </app-header>
+    <nav class="navigation">
+        <div class="nav">
+            <router-link :to="{}" class="nav__link">Polls</router-link>
+            <router-link :to="{}" class="nav__link">Create Poll</router-link>
+            <router-link :to="{}" class="nav__link">Popular Polls</router-link>
+        </div>
+        <router-view></router-view>
+    </nav>
 </div>
     
 </template>
 
 <script>
-    import Header from './Header.vue'
+    import HeaderMain from './HeaderMain.vue'
     export default {
-        beforeRouteEnter (to, from, next) {
-            if (localStorage.getItem('jwt') === null) {
-                next('/login');
-            }
-            else {
-                next();
-            }
-        },
+        // beforeRouteEnter (to, from, next) {
+        //     if (localStorage.getItem('jwt') === null) {
+        //         next('/login');
+        //     }
+        //     else {
+        //         next();
+        //     }
+        // },
         components: {
-            appHeader: Header
+            appHeader: HeaderMain
         }
     }
 </script>
+
+<style scoped>
+.navigation {
+    padding: 5rem;
+    width: 60%;
+    margin: 2rem auto;
+}
+.nav {
+    display: flex;
+    justify-content: center;
+}
+.nav__link {
+    color: #673ab7;
+    font-size: 1.5rem;
+    padding: 0.8rem 2rem;
+    margin: 0 2rem;
+}
+</style>
+

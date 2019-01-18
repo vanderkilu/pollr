@@ -28,19 +28,19 @@ export default {
         classes: ['c-1','c-2', 'c-3'],
         categories: [
             {
-            id: 1,
-            count: 20,
-            name: "Technology"
+                id: 1,
+                count: 20,
+                name: "Technology"
             },
             {
-            id: 2,
-            count: 550,
-            name: "Science Fiction"
+                id: 2,
+                count: 550,
+                name: "Science Fiction"
             },
             {
-            id: 3,
-            count: 900,
-            name: "Entertainment"
+                id: 3,
+                count: 900,
+                name: "Entertainment"
             },
         ]
     };

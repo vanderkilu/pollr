@@ -1,25 +1,9 @@
 <template>
     <div class="auth-container">
-        <component :is="currentComponent"></component>
+        <router-view></router-view>
     </div>
 </template>
 
-
-<script>
-import Login from './Login.vue'
-import Signup from './Signup.vue'
-export default {
-    data() {
-        return {
-            currentComponent: 'appLogin'
-        }
-    },
-    components: {
-        appLogin: Login,
-        appSignup: Signup
-    }
-}
-</script>
 
 <style scoped>
     .auth-container {
