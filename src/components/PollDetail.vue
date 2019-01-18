@@ -1,24 +1,12 @@
 <template>
-    <div>
-        <app-header></app-header>
-        <div v-if="isUser" class="text-center poll-edit">
-            <router-link :to="{name:'edit', params: {id: this.$route.params.id }}" class="green-text">Edit</router-link> 
-            or <a href="#" @click.prevent="deletePoll" class="green-text"> Delete </a> this post
-        </div>
-        <div class="vote-wrapper">
-            <div v-for="option in options" :key="option._id" class="vote-card">
-               <p>{{option.value}}</p>   
-               <p>{{ updateOptionCount(option) }}</p>
-            </div>
-        </div>
-        <div class="poll-detail-container">
-            <div class="poll">
-                <div class="poll-card">
-                    <p> {{ poll.title }}</p>
-                    <div class="poll-options">
-                        <button @click="vote(option)" v-for="option in options" :key="option._id" class="btn btn-option">{{option.value}}</button>
-                    </div>
-                </div>
+    <div class="wrapper-poll">
+        <h5 class="question">
+            dog or cat or mule or rabbit ?
+        </h5>
+        <div class="options">
+            <div class="poll-option" :class="pollClass+i" v-for="(option,i) in options" :key="i"> 
+                <p>{{option.value}}</p> 
+                <p class="poll-count">{{option.count}}</p>
             </div>
         </div>
     </div>
@@ -35,7 +23,25 @@
             return {
                 id: '',
                 poll: null,
-                options: [],
+                pollClass: 'po-',
+                options: [
+                    {
+                        value: 'cat',
+                        count: 10
+                    },
+                     {
+                        value: 'dog',
+                        count: 50
+                    },
+                    {
+                        value: 'mule',
+                        count: 19
+                    },
+                    {
+                        value: 'rabbit',
+                        count: 70
+                    },
+                ],
                 increment: 0,
                 socket: io('http://localhost:30002/'),
                 optionToUpdate: '',
@@ -124,42 +130,54 @@
 </script>
 
 <style>
-.poll-detail-container  {
+.wrapper-poll {
+    margin: 10rem 0;
+}
+.question {
+    background-color: #ede7f6;
+    color: #673ab7;
+    font-size: 1.6rem;
+    padding: 6rem 4rem;
+    text-align: center;
+    margin-bottom: 10rem;
+}
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.poll-option {
     display: flex;
     justify-content: center;
-    margin: 2rem 0;
+    align-items: center;
+    padding: 6rem;
+    font-size: 1.7rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
 }
-.poll{
-    display: table;
-    background-color: white;
-    box-shadow: 0 1.2rem 2.2rem rgba(0, 0, 0, 0.04);
+.po-0 {
+    background-color: #ede7f6;
+    color: #673ab7;
 }
-.btn-option{
-    padding: 2rem;
-    color: white;
-    border-radius: 2px;
-    box-shadow: 0 0.4rem 0.5rem rgba(0, 0, 0, 0.04);
-    margin: 1rem;
-    background-color: #5cdb95;
+.po-1 {
+    background-color: #fce4ec;
+    color: #d81b60;
 }
-.vote-wrapper {
-    margin-top: 5rem;
-    text-align: center;
+.po-2 {
+    background-color: #e3f2fd;
+    color: #1565c0;
 }
-.vote-card {
-    display: inline-block;
-    width: 20%;
-    margin: 0 2rem;
-    padding: 1rem 0.5rem;
-    background-color: white;
-    box-shadow: 0 1.2rem 2.2rem rgba(0, 0, 0, 0.04);
-    border-radius: 3px;
-    text-align: center;
+.po-3 {
+    background-color: #f9fbe7;
+    color: #afb42b;
 }
-.poll-edit {
-    margin-top: 3rem;
-}
-.green-text {
-    color:#5cdb95; 
+.poll-count {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: black;
 }
 </style>

@@ -55,16 +55,16 @@ export default new Router({
           component: PollCreate,
         },
         {
+          path: 'poll/:id',
+          name: 'poll-detail',
+          component: PollDetail
+        },
+        {
           path: '/:id/edit',
           name: 'edit',
           component: PollEdit,
         },
       ]
-    },
-    {
-      path: '/poll/:id',
-      name: 'poll-detail',
-      component: PollDetail
     },
     {
       path: '/search',
