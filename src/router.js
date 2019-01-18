@@ -19,14 +19,14 @@ export default new Router({
   routes: [
     {
       path: '',
-      name: 'Auth',
+      name: 'home',
+      component: Home,
+    },
+    {
+      path: '/auth',
+      name: 'auth',
       component: Auth,
       children: [
-        {
-          path: '/',
-          name: 'home',
-          component: Home
-        },
         {
           path: '/signup',
           name: 'Signup',
