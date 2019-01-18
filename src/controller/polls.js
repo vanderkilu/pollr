@@ -3,6 +3,7 @@ import Poll from '../models/polls';
 import User from '../models/user';
 import PollOption from '../models/poll_option'
 import Vote from '../models/votes'
+import Category from '../models/category'
 
 
 export default() => {
@@ -132,5 +133,24 @@ export default() => {
                });   
            });
    });
+
+   api.post('/category', (req, res) => {
+       const category = new Category()
+       category.name = req.body.name
+       category.save((err)=> {
+           if (err) return res.send(err)
+           return res.json(category)
+       })
+   })
+
+   api.get('/:category_id/polls', (req, res) => {
+       Poll.find({category: req.params.category_id})
+            .populate('user', 'username')
+            .exec((err, polls)=> {
+                if(err) return res.send(err)
+                return res.json(polls)
+            })
+   })
+
     return api;
 }

@@ -1,13 +1,28 @@
-import express from 'express';
-import pollController from '../controller/polls';
-import accountController from '../controller/accounts';
-import { authenticate } from  '../middleware'
+import express from 'express'
+import {authenticate, generateAccessToken, respond } from '../middleware'
+import passport from 'passport';
+const AccountController = require('../controller/accounts')
 
 
-const router = express();
+module.exports = (app) => {
 
-router.use('/account', accountController());
-router.use('/poll', authenticate , pollController());
+    const apiRoutes = express.Router()
+    const authRoutes = express.Router()
+    const pollRoutes = express.Router()
+
+    apiRoutes.use('/account', authRoutes)
+
+    //account routes
+    authRoutes.use('/register', AccountController.register)
+    authRoutes.use('/login', passport.authenticate('local', {session: false, scope: []}), 
+                    generateAccessToken, respond)
+    authRoutes.use('/logout', AccountController.logout)
+    authRoutes.use('/users', AccountController.users)
+
+    return app.use('/api', apiRoutes)
+}
 
 
-export default router;
+
+
+

@@ -15,7 +15,11 @@ const PollSchema = new Schema({
         ref: 'User'
     },
     pollOptions: [PollOption.schema],
-    votes: [{type:Schema.Types.ObjectId, ref: 'Vote' }]
+    votes: [{type:Schema.Types.ObjectId, ref: 'Vote' }],
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category'
+    }
 });
 
 PollSchema.pre('remove', function(next) {

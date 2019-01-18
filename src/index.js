@@ -3,14 +3,15 @@ import bodyParser from  'body-parser';
 import mongoose from 'mongoose';
 import http from 'http';
 import passport from  'passport';
+import config from './config';
+import User from './models/user';
 const cors = require('cors')
+const router = require('./routes/routes')
 const LocalStrategy = require('passport-local').Strategy
 
 
 
-import config from './config';
-import routes from './routes/routes';
-import User from './models/user';
+
 
 const app = express()
 const server = http.createServer(app);
@@ -41,7 +42,7 @@ io.on('connection', (socket) => {
 })
 
 
-app.use('/api', routes);
+router(app);
 
 
 
@@ -50,5 +51,5 @@ app.use('/api', routes);
 
 server.listen(config.port, (err)=> {
     if (err) return err;
-    console.log('running');
+    console.log(config.port);
 });
