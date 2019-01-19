@@ -8,6 +8,10 @@ let Schema = mongoose.Schema;
 const UserSchema = new Schema({
     email: String,
     password: String,
+    username: {
+        type: String,
+        required: true
+    },
     polls: [Poll.schema],
     votedPolls: [Poll.schema],
 });
