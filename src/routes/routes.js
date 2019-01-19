@@ -2,6 +2,7 @@ import express from 'express'
 import {authenticate, generateAccessToken, respond } from '../middleware'
 import passport from 'passport';
 const AccountController = require('../controller/accounts')
+const PollController = require('../controller/newPolls')
 
 
 module.exports = (app) => {
@@ -11,13 +12,25 @@ module.exports = (app) => {
     const pollRoutes = express.Router()
 
     apiRoutes.use('/account', authRoutes)
+    apiRoutes.use('/poll', pollRoutes)
 
     //account routes
-    authRoutes.use('/register', AccountController.register)
-    authRoutes.use('/login', passport.authenticate('local', {session: false, scope: []}), 
+    authRoutes.post('/register', AccountController.register)
+    authRoutes.post('/login', passport.authenticate('local', {session: false, scope: []}), 
                     generateAccessToken, respond)
-    authRoutes.use('/logout', AccountController.logout)
-    authRoutes.use('/users', AccountController.users)
+    authRoutes.get('/logout', AccountController.logout)
+    authRoutes.get('/users', AccountController.users)
+
+    //poll routes
+    pollRoutes.post('/create',authenticate,PollController.createPoll)
+    pollRoutes.get('/category/:category_id/polls',authenticate,PollController.getPollsForCategory)
+    pollRoutes.get('/categories',authenticate,PollController.getAllCategory)
+    pollRoutes.post('/category',authenticate,PollController.createCategory)
+    pollRoutes.get('/:poll_id', authenticate, PollController.getPoll)
+    pollRoutes.put('/:poll_id', authenticate, PollController.updatePoll)
+    pollRoutes.delete('/:poll_id', authenticate, PollController.deletePoll)
+    pollRoutes.get('/', authenticate, PollController.getAllPoll)
+   
 
     return app.use('/api', apiRoutes)
 }
