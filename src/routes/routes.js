@@ -30,6 +30,8 @@ module.exports = (app) => {
     pollRoutes.put('/:poll_id', authenticate, PollController.updatePoll)
     pollRoutes.delete('/:poll_id', authenticate, PollController.deletePoll)
     pollRoutes.get('/', authenticate, PollController.getAllPoll)
+    pollRoutes.post('/:poll_id/vote',authenticate,PollController.vote)
+    pollRoutes.get('/:poll_id/polloptions', authenticate, PollController.getPollOptionsForPoll)
    
 
     return app.use('/api', apiRoutes)
