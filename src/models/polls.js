@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import PollOption from './poll_option';
-import Vote from './votes';
 
 let Schema = mongoose.Schema;
 
