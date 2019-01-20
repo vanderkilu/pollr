@@ -44,12 +44,11 @@ io.on('connection', (socket) => {
 
 router(app);
 
+if (!module.parent) {
+    server.listen(config.port, (err)=> {
+        if (err) return err;
+        console.log(config.port);
+    });
+}
+module.exports = app
 
-
-
-
-
-server.listen(config.port, (err)=> {
-    if (err) return err;
-    console.log(config.port);
-});
