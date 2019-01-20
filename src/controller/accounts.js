@@ -2,7 +2,7 @@ import User from '../models/user';
 import passport from 'passport';
 
 exports.register = (req, res) => {
-    User.register(new User({username: req.body.email}),
+    User.register(new User({username: req.body.email, profile: req.body.profile}),
         req.body.password,(err, user) => {
             if (err) return res.send(err)
             passport.authenticate('local', {session:false})

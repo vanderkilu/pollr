@@ -21,7 +21,8 @@ let respond = (req, res) => {
     res.status(200).json({
         id: req.user.id,
         user: req.user.username,
-        token: req.token
+        token: req.token,
+        profile: req.user.profile
     });
 }
 

@@ -16,7 +16,8 @@ const PollSchema = new Schema({
     pollOptions: [PollOption.schema],
     category: {
         type: Schema.Types.ObjectId,
-        ref: 'Category'
+        ref: 'Category',
+        required: true
     }
 });
 
