@@ -1,46 +1,31 @@
 <template>
     <div class="wrapper">
-        <router-link :to="{}" class="link">
+        <router-link :to="{name: 'poll', params:{id: poll._id}}" class="link" v-for="poll in polls" :key="poll._id">
             <div class="poll-card">
-                <p class="poll-card__text ">cat or dogs?</p>
-                <p class="poll-card__name ">By Kweku Kilu</p>
-                <p class="poll-card__time "> 4 min ago</p>
-                <p class="poll-card__votes ">54 votes</p>
+                <p class="poll-card__text ">{{poll.title}}</p>
+                <p class="poll-card__name ">by {{poll.user.profile}}</p>
             </div>
         </router-link>
     </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex';
-import {mapGetters} from 'vuex'
+import { getAllPollsForCategory } from '../api'
 export default {
     data() {
         return {
+            polls: []
         }
-    },
-    computed: {
-        ...mapGetters([
-            'polls',
-            'neededInfo'
-        ]),
     },
     methods: {
-        ...mapActions([
-            'setPolls'
-        ]),
+        async getPolls() {
+            let data = await getAllPollsForCategory(this.$route.params.id)
+            this.polls = data.data
+        }
     },
     mounted() {
-        let token = this.neededInfo.token
-        let headers = {
-            headers: { Authorization: `Bearer ${token}` }
-        }
-        this.$http.get('poll/polls', headers)
-            .then(data => {
-                console.log(data.data);
-                this.setPolls(data.data);
-            });
-    },
+        this.getPolls()
+    }
 }
     
 </script>

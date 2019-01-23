@@ -7,11 +7,8 @@
     <section class="wrapper__main">
       <h3 class="wrapper__main-text">Poll Collections</h3>
       <div class="category">
-          <router-link :to="{}" v-for="category in categories" :key="category.id" class="link">
+          <router-link :to="{name: 'polls', params: {id: category._id}}" v-for="category in categories" :key="category.id" class="link">
                <div class="category__card">
-                    <div class="category__card-background" :class="generateClass">
-                        <!-- <p class="category__card-count">{{category.count}}</p> -->
-                    </div>
                     <h5>{{category.name}}</h5>
                 </div>
           </router-link>
@@ -27,23 +24,7 @@ export default {
   data() {
     return {
         classes: ['c-1','c-2', 'c-3'],
-        categories: [
-            {
-                id: 1,
-                count: 20,
-                name: "Technology"
-            },
-            {
-                id: 2,
-                count: 550,
-                name: "Science Fiction"
-            },
-            {
-                id: 3,
-                count: 900,
-                name: "Entertainment"
-            },
-        ]
+        categories: []
     };
   },
   computed: {

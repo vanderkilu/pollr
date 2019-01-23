@@ -1,12 +1,15 @@
 <template>
     <div class="wrapper-poll">
         <h5 class="question">
-            dog or cat or mule or rabbit ?
+            {{poll.title}}
         </h5>
         <div class="options">
-            <div class="poll-option" :class="pollClass+i" v-for="(option,i) in options" :key="i"> 
+            <div class="poll-option" :class="pollClass+i" 
+                                    v-for="(option,i) in options" 
+                                    :key="i"
+                                    @click="vote(option)"> 
                 <p>{{option.value}}</p> 
-                <p class="poll-count">{{option.count}}</p>
+                <p class="poll-count">{{updateOptionCount(option) }}</p>
             </div>
         </div>
     </div>
@@ -15,112 +18,55 @@
 
 <script>
     import io from 'socket.io-client'
-    import {mapGetters} from 'vuex'
     import Header from './Header.vue'
+    import { getPoll,getAllOptionsForPoll, doVote} from '../api'
 
     export default {
         data() {
             return {
-                id: '',
+                id: this.$route.params.id,
                 poll: null,
                 pollClass: 'po-',
-                options: [
-                    {
-                        value: 'cat',
-                        count: 10
-                    },
-                     {
-                        value: 'dog',
-                        count: 50
-                    },
-                    {
-                        value: 'mule',
-                        count: 19
-                    },
-                    {
-                        value: 'rabbit',
-                        count: 70
-                    },
-                ],
+                options: [],
                 increment: 0,
-                socket: io('http://localhost:30002/'),
+                socket: io('http://localhost:30016/'),
                 optionToUpdate: '',
                 voted: false,
                 isUser: false
             }
         },
-        computed: {
-            ...mapGetters([
-                'polls',
-                'neededInfo'
-            ]),
-            pollObject() {
-                return this.polls.find((poll) => poll._id === this.id);
-            },
-        },
         mounted() {
             this.socket.on('vote', (data) => {
                 this.increment = data.count;
                 this.optionToUpdate = data.option;
-            });
-            this.id = this.$route.params.id;
-            let token = this.neededInfo.token
-            let headers = {
-                headers: { Authorization: `Bearer ${token}` }
-            }
-            this.$http.get(`poll/${this.id}`, headers)
-                .then(data => {
-                    this.poll = data.data;
-                    this.isUser = (this.neededInfo.userId === this.poll.user) ? true : false
-                });
-            this.$http.get(`poll/${this.id}/poll-options`, headers)
-                .then((data) => {
-                     this.options.push(...data.data);
-                     console.log(data.data);
-                }
-               )
-            .catch(err => console.log(err));
+            })
+            this.getData()
         },
         methods: {
             generateTotalVote(instance) {
                 return instance.votes.length;
             },
-            vote(option) {
-                let token = this.neededInfo.token
-                let headers = {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-                let optionId = option._id;
-
+            async vote(option) {
                 if (!this.voted) {
-                    this.$http.post(`poll/${this.id}/${optionId}/votes`, {}, headers)
-                    .then((data) => {
-                            let message = {count: 0, option: data.data.pollOption}
-                            let type = data.data.type;
-                            if (type === 'increase') message.count++ ;
-                            this.socket.emit('vote', message);
-                            this.voted = true;
-                        })
-                    .catch(err => console.log(err));
+                    let data = await doVote(this.id, option._id)
+                    let message = {count: 0, option: data.data.pollOption}
+                    let type = data.data.type;
+                    if (type === 'increase') message.count++ ;
+                    this.socket.emit('vote', message);
+                    this.voted = true;
                 }
-                
-
-            },
-            deletePoll() {
-                let token = this.neededInfo.token
-                let headers = {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-                this.$http.delete(`poll/${this.id}`, headers)
-                .then(data => {
-                    this.$router.push({name:'polls'});
-                })
             },
             updateOptionCount(option) {
                 if (this.optionToUpdate === option.value){
                     return this.increment + this.generateTotalVote(option);
                 } 
                 return this.generateTotalVote(option);
+            },
+            async getData() {
+                let pollData = await getPoll(this.id)
+                let optionData = await getAllOptionsForPoll(this.id)
+                this.poll = pollData.data
+                this.options = optionData.data
             }
         },
         components: {

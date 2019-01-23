@@ -1,11 +1,19 @@
 <template>
     <div class="wrapper">
-        <form action="" class="form">
+        <form  class="form" @submit.prevent="makePoll">
             <p class="wrapper__text"> Let us poll together <span class="emoji"> 😇</span> </p>
-            <input type="text" class="input" placeholder="question">
+            <input type="text" class="input" placeholder="question" v-model="title">
             <transition-group name="list">
-                    <input type="text" class="input" :placeholder="opt.value + i"  v-for="(opt,i) in alts" :key="i">
+                    <input type="text" class="input" :placeholder="opt.value + i" 
+                     v-for="(opt,i) in alts" :key="i"
+                     v-model="opt.value">
             </transition-group>
+
+            <select v-model="selected" class="select">
+                <option disabled value="">Please select category</option>
+                <option v-for="category in categories" :key="category._id" :value="category._id">{{category.name}}</option>
+            </select>
+
             <div class="option-controls">
                 <span class="add" @click="addOption">&plus;</span>
                 <span class="remove" @click="removeOption">&times;</span>
@@ -18,22 +26,17 @@
     </div>
 </template>
 <script>
-    
-    import {mapGetters} from 'vuex'
+    import { createPoll,getAllCategory } from '../api'
     export default {
         data() {
             return {
                 poll: '',
                 isError: false,
-                alts: [{value: 'option '},{value: 'option '}]
+                alts: [{value: 'option '},{value: 'option '}],
+                categories: [],
+                selected: '',
+                title: ''
             }
-        },
-        computed: {
-            ...mapGetters([
-                'neededInfo',
-                'headers'
-            ]),
-
         },
         methods: {
             validate() {
@@ -41,21 +44,18 @@
                     return alt.value === ''
                 });
             },
-            createPoll() {
-                if (this.validate()) {
+            async makePoll() {
+                if (this.validate() || this.selected === '') {
                     this.isError = true;
                     return;
                 }
-                let user_id = this.neededInfo.userId;
-                let data = {
-                    title: this.poll,
-                    pollOptions: this.alts
-                }
-                this.$http.post(`poll/${user_id}/polls`, data, this.headers)
-                    .then((data) => {
-                        this.$router.push({name:'polls'});
-                    })
-                    .catch(err => console.log(err));
+                let data = {title: this.title,pollOptions: this.alts, category:this.selected}
+                let result = await createPoll(data)
+                this.$router.push({name: 'polls', params: {id: this.selected}})
+            },
+            async getCategories() {
+                let categories = await getAllCategory()
+                this.categories = categories.data
             },
             addOption() {
                 this.alts.push({value: 'option '});
@@ -63,6 +63,9 @@
             removeOption() {
                 this.alts = this.alts.slice(0, this.alts.length-1);
             }
+        },
+        beforeMount()  {
+            this.getCategories()
         }
 
     }
@@ -135,6 +138,16 @@
 }
 .list-leave-active {
     position: absolute;
+}
+.select {
+    padding: 2rem;
+    margin: 2rem 0;
+    border: none;
+    background-color: #eeeeee;
+    color: black;
+}
+.select:focus {
+    outline: none;
 }
 
 </style>

@@ -45,7 +45,7 @@ export default new Router({
       component: PollContainer,
       children: [
         {
-          path: '/',
+          path: 'category/:id/polls',
           name: 'polls',
           component: Polls,
         },
@@ -56,7 +56,7 @@ export default new Router({
         },
         {
           path: 'poll/:id',
-          name: 'poll-detail',
+          name: 'poll',
           component: PollDetail
         },
         {
