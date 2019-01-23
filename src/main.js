@@ -5,7 +5,7 @@ import store from './store'
 import Axios from 'axios'
 
 const ajax = Axios.create({
-  baseURL: 'http://localhost:30001/api',
+  baseURL: 'http://localhost:30016/api',
 })
 Vue.prototype.$http = ajax
 Vue.config.productionTip = false
