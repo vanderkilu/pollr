@@ -29,21 +29,6 @@ export default new Vuex.Store({
     polls(state) {
       return state.polls;
     },
-    neededInfo(state) {
-      let token = JSON.parse(localStorage.getItem('jwt'))
-      let userId = JSON.parse(localStorage.getItem('id'))
-      return {
-          token,
-          userId
-      }
-    },
-    headers(state) {
-        let token = JSON.parse(localStorage.getItem('jwt'))
-        let headers = {
-            headers: { Authorization: `Bearer ${token}` }
-        }
-        return headers;
-    },
     searchParam(state) {
       return state.searchParam;
     },

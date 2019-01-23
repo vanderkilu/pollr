@@ -10,7 +10,7 @@
           <router-link :to="{}" v-for="category in categories" :key="category.id" class="link">
                <div class="category__card">
                     <div class="category__card-background" :class="generateClass">
-                        <p class="category__card-count">{{category.count}}</p>
+                        <!-- <p class="category__card-count">{{category.count}}</p> -->
                     </div>
                     <h5>{{category.name}}</h5>
                 </div>
@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import HeaderMain from "./HeaderMain.vue";
+import HeaderMain from "./HeaderMain.vue"
+import { getAllCategory } from '../api'
 export default {
   data() {
     return {
@@ -49,11 +50,19 @@ export default {
       generateClass() {
           let num = Math.floor(Math.random() * 3)
           return this.classes[num]
+      },
+      async getCategories() {
+          let data = await getAllCategory()
+          this.categories = data.data
       }
   },
   components: {
     appHeaderMain: HeaderMain
+  },
+  beforeMount() {
+      this.getCategories()
   }
+
 };
 </script>
 
