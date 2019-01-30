@@ -16,6 +16,9 @@ It is often said to become an expert, you should continue to practice. This is o
 ```
 npm install
 ```
+```
+uses mongodb so you should setup a mongodb server
+```
 ### Compiles and hot-reloads for development
 
 ```
