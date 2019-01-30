@@ -1,5 +1,5 @@
 # poll-ui
-
+this is the ui/frontend to the pollr voting/polling web app. still in development tho
 ## Project setup
 ```
 npm install
