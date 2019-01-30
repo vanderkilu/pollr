@@ -4,6 +4,8 @@
             <div class="poll-card">
                 <p class="poll-card__text ">{{poll.title}}</p>
                 <p class="poll-card__name ">by {{poll.user.profile}}</p>
+                <p class="poll-card__votes">{{getCount(poll)}} votes</p>
+                
             </div>
         </router-link>
     </div>
@@ -17,10 +19,18 @@ export default {
             polls: []
         }
     },
+    computed: {
+       
+    },
     methods: {
         async getPolls() {
             let data = await getAllPollsForCategory(this.$route.params.id)
             this.polls = data.data
+        },
+         getCount(poll) {
+            if (!poll.pollOptions) return
+            let count = poll.pollOptions.reduce((acc, option) => acc + option.votes.length, 0)
+            return count
         }
     },
     mounted() {
