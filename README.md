@@ -9,8 +9,8 @@ It is often said to become an expert, you should continue to practice. This is o
 2. practical understanding of models + mongodb documents and subdocuments
 3. creating restful api with express(node.js)
 4. Permission
-5.testing using mocha and chai
-6.cors
+5. testing using mocha and chai
+6. cors
 
 ## Project setup
 ```
