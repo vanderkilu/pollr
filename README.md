@@ -1,4 +1,4 @@
-# pollr
+# pollr(server)
 this is the server side to my polling/voting application that i i built as a challenge to the #100daysofcode challenge
 
 It is often said to become an expert, you should continue to practice. This is one of my "practice project" 
