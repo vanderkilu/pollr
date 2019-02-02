@@ -61,7 +61,7 @@
                 this.categories = categories.data
             },
             addOption() {
-                if (!this.isMaxLength) {
+                if (!this.isMaxLength()) {
                     this.alts.push({value: 'option '});
                 }
             },
