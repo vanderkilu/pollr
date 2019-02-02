@@ -44,6 +44,9 @@
                     return alt.value === ''
                 });
             },
+            isMaxLength() {
+                return this.alts.length >= 4
+            },
             async makePoll() {
                 if (this.validate() || this.selected === '') {
                     this.isError = true;
@@ -58,7 +61,9 @@
                 this.categories = categories.data
             },
             addOption() {
-                this.alts.push({value: 'option '});
+                if (!this.isMaxLength) {
+                    this.alts.push({value: 'option '});
+                }
             },
             removeOption() {
                 this.alts = this.alts.slice(0, this.alts.length-1);

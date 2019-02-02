@@ -9,7 +9,9 @@
             <router-link :to="{name: 'create'}" class="nav__link">Create Poll</router-link>
             <router-link :to="{}" class="nav__link">Popular Polls</router-link>
         </div>
-        <router-view></router-view>
+        <transition :name="transitionName">
+            <router-view></router-view>
+        </transition>
     </nav>
 </div>
     
@@ -28,6 +30,13 @@
         },
         components: {
             appHeader: HeaderMain
+        },
+        watch: {
+        '$route' (to, from) {
+            const toDepth = to.path.split('/').length
+            const fromDepth = from.path.split('/').length
+            this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+            }
         }
     }
 </script>
@@ -48,5 +57,6 @@
     padding: 0.8rem 2rem;
     margin: 0 2rem;
 }
+
 </style>
 

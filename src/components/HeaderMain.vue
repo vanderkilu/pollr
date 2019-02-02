@@ -10,7 +10,7 @@
                 <slot></slot>
             </section>
             <section class="right-content">
-
+                <!-- <img src="../assets/poll.png" alt="preview"> -->
             </section>
         </div>
     </div>
@@ -76,5 +76,9 @@
     .login:hover {
         color: #e0e0e0;
     }
-
+    .right-content img {
+        width: 100%;
+        border-radius: 3px;
+        box-shadow: 0 1rem 2rem rgba(0,0,0,0.03);
+    }
 </style>
