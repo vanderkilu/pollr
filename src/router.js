@@ -10,6 +10,7 @@ import PollDetail from './components/PollDetail.vue'
 import PollEdit from './components/PollEdit.vue'
 import PollSearch from './components/PollSearch.vue'
 import Home from './components/Home.vue'
+import RecentPolls from './components/RecentPolls.vue'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
       name: 'pollContainer',
       component: PollContainer,
       children: [
+        {
+          path: '',
+          name: 'recent',
+          component: RecentPolls
+        },
         {
           path: 'category/:id/polls',
           name: 'polls',

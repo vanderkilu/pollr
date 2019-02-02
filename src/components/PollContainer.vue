@@ -1,12 +1,12 @@
 <template>
 <div>
     <app-header>
-         <router-link :to="{}" class="btn-cta">create poll now</router-link>
+         <router-link :to="{name: 'create'}" class="btn-cta">create poll now</router-link>
     </app-header>
     <nav class="navigation">
         <div class="nav">
-            <router-link :to="{}" class="nav__link">Polls</router-link>
-            <router-link :to="{}" class="nav__link">Create Poll</router-link>
+            <router-link :to="{name:'recent'}" class="nav__link">Polls</router-link>
+            <router-link :to="{name: 'create'}" class="nav__link">Create Poll</router-link>
             <router-link :to="{}" class="nav__link">Popular Polls</router-link>
         </div>
         <router-view></router-view>
@@ -18,14 +18,14 @@
 <script>
     import HeaderMain from './HeaderMain.vue'
     export default {
-        // beforeRouteEnter (to, from, next) {
-        //     if (localStorage.getItem('jwt') === null) {
-        //         next('/login');
-        //     }
-        //     else {
-        //         next();
-        //     }
-        // },
+        beforeRouteEnter (to, from, next) {
+            if (localStorage.getItem('jwt') === null) {
+                next({name: 'login'});
+            }
+            else {
+                next();
+            }
+        },
         components: {
             appHeader: HeaderMain
         }

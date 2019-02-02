@@ -1,6 +1,8 @@
 <template>
     <div class="wrapper">
-         <img src=../assets/logo.png class="logo" alt="logo">
+        <router-link :to="{name: 'home'}">
+            <img src=../assets/logo.png class="logo" alt="logo">
+        </router-link>
         <div class="container">
             <section class="left-content">
                 <h1 class="left-content__text--bold"> Create a <span class="black-color">poll</span> now and see results in <span class="black-color">realtime </span></h1>

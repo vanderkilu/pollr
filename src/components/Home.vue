@@ -1,15 +1,15 @@
 <template>
   <div class="wrapper">
     <app-header-main>
-      <router-link :to="{}" class="btn-cta">create poll now</router-link>
-      <router-link :to="{}" class="login">Login here 👉</router-link>
+      <router-link :to="{name: 'create'}" class="btn-cta">create poll now</router-link>
+      <router-link :to="{name: 'login'}" class="login">Login here 👉</router-link>
     </app-header-main>
     <section class="wrapper__main">
       <h3 class="wrapper__main-text">Poll Collections</h3>
       <div class="category">
           <router-link :to="{name: 'polls', params: {id: category._id}}" v-for="category in categories" :key="category.id" class="link">
                <div class="category__card">
-                    <h5>{{category.name}}</h5>
+                    <h5 class="c" :class="category.style">{{category.name}}</h5>
                 </div>
           </router-link>
       </div>
@@ -27,7 +27,7 @@ export default {
         categories: []
     };
   },
-  computed: {
+  methods: {
       generateClass() {
           let num = Math.floor(Math.random() * 3)
           return this.classes[num]
@@ -35,6 +35,11 @@ export default {
       async getCategories() {
           let data = await getAllCategory()
           this.categories = data.data
+          this.categories = this.categories.map(category => { 
+              category.style = this.generateClass()
+              return category
+          })
+          console.log(this.categories)
       }
   },
   components: {
@@ -72,6 +77,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 20rem;
 }
 .category__card-background {
   width: 4rem;
@@ -90,17 +96,22 @@ export default {
 .category__card-background:hover .category__card-count {
     transform: rotate(90deg);
 }
+.c {
+    padding: 0.8rem;
+    border-radius: 3px;
+    font-weight: 100;
+}
 .c-1 {
-    background-color: #ede7f6;
-    color: #673ab7;
+    background-color: #fffde7;
+    color: #f57f17;
 }
 .c-2 {
-    background-color: #fce4ec;
-    color: #d81b60;
+    color:#afb42b;
+    background-color:#f9fbe7;
 }
 .c-3 {
-    background-color: #e3f2fd;
-    color: #1565c0;
+    color:#33691e;
+    background-color:#f1f8e9;
 }
 .link {
     color: black;

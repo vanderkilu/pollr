@@ -42,7 +42,9 @@ const doVote = (pollId, pollOptionId) => {
 const createPoll = (data) => {
     return axios.post('poll/create', data, headers)
 }
+const getRecentPolls = () => axios.get('poll/recent')
 
+const updateCount = (pollId) => axios.put(`poll/${pollId}/update-count`, {}, headers)
 
 export  { 
     login, 
@@ -53,6 +55,8 @@ export  {
     getPoll,
     getAllOptionsForPoll,
     doVote,
-    createPoll
+    createPoll,
+    getRecentPolls,
+    updateCount
 }
 

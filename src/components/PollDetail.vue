@@ -19,7 +19,7 @@
 <script>
     import io from 'socket.io-client'
     import Header from './Header.vue'
-    import { getPoll,getAllOptionsForPoll, doVote} from '../api'
+    import { getPoll,getAllOptionsForPoll, doVote,updateCount} from '../api'
 
     export default {
         data() {
@@ -43,6 +43,10 @@
             this.getData()
         },
         methods: {
+             async updateVoteCount() {
+                 const data = await updateCount(this.id)
+                 return data
+            },
             generateTotalVote(instance) {
                 return instance.votes.length;
             },
@@ -51,7 +55,10 @@
                     let data = await doVote(this.id, option._id)
                     let message = {count: 0, option: data.data.pollOption}
                     let type = data.data.type;
-                    if (type === 'increase') message.count++ ;
+                    if (type === 'increase')  {
+                         message.count++ ;
+                         this.updateVoteCount()
+                    }
                     this.socket.emit('vote', message);
                     this.voted = true;
                 }

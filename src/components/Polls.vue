@@ -4,7 +4,7 @@
             <div class="poll-card">
                 <p class="poll-card__text ">{{poll.title}}</p>
                 <p class="poll-card__name ">by {{poll.user.profile}}</p>
-                <p class="poll-card__votes">{{getCount(poll)}} votes</p>
+                <p class="poll-card__votes">{{poll.count || 0}} votes</p>
                 
             </div>
         </router-link>
@@ -27,11 +27,6 @@ export default {
             let data = await getAllPollsForCategory(this.$route.params.id)
             this.polls = data.data
         },
-         getCount(poll) {
-            if (!poll.pollOptions) return
-            let count = poll.pollOptions.reduce((acc, option) => acc + option.votes.length, 0)
-            return count
-        }
     },
     mounted() {
         this.getPolls()
@@ -58,20 +53,26 @@ export default {
     background-color: white;
     font-size: 1.4rem;
     transition: all 0.4s;
+    height: 20rem;
 }
 .poll-card:hover {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.03);
+}
+.poll-card__text {
+    color: #7b1fa2;
 }
 .poll-card__name {
     margin-top: 4rem;
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
+    color: #bdbdbd;
 }
 .poll-card__votes {
-    background-color: #fce4ec;
-    color: #d81b60;
+    background-color: #ede7f6;
+    color: #7b1fa2;
     padding: 0.8rem;
     font-size: 1.2rem;
+    border-radius: 3px;
 }
 .poll-card__time {
     font-size: 1.2rem;
