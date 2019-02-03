@@ -46,6 +46,11 @@ const getRecentPolls = () => axios.get('poll/recent', headers)
 
 const updateCount = (pollId) => axios.put(`poll/${pollId}/update-count`, {}, headers)
 
+const getAllComment = async (pollId)=> {
+    let data = await axios.get(`poll/${pollId}/comments`, headers)
+    return data.data
+}
+
 export  { 
     login, 
     signup, 
@@ -57,6 +62,7 @@ export  {
     doVote,
     createPoll,
     getRecentPolls,
-    updateCount
+    updateCount,
+    getAllComment
 }
 

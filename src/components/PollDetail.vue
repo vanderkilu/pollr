@@ -12,6 +12,18 @@
                 <p class="poll-count">{{updateOptionCount(option) }}</p>
             </div>
         </div>
+
+        <div class="comment">
+            <h3 class="comment__title">Responses</h3>
+            <form class="comment__form">
+                <textarea type="text" class="comment__input"></textarea>
+                <p class="comment__user"><span class="emoji"> 😉 </span> kweku kilu</p>
+                <button class="btn">publish</button>
+            </form>
+            <app-comment-container v-for="comment in comments" :key="comment.id" :comment="comment">
+             </app-comment-container>
+        </div>
+        
     </div>
 </template>
 
@@ -19,7 +31,9 @@
 <script>
     import io from 'socket.io-client'
     import Header from './Header.vue'
-    import { getPoll,getAllOptionsForPoll, doVote,updateCount} from '../api'
+    import CommentContainer from './CommentContainer.vue'
+    import { getPoll,getAllOptionsForPoll, 
+    doVote,updateCount, getAllComment } from '../api'
 
     export default {
         data() {
@@ -32,7 +46,8 @@
                 socket: io('http://localhost:30016/'),
                 optionToUpdate: '',
                 voted: false,
-                isUser: false
+                isUser: false,
+                comments: [{}]
             }
         },
         mounted() {
@@ -41,6 +56,7 @@
                 this.optionToUpdate = data.option;
             })
             this.getData()
+            // this.comments = getAllComment()
         },
         methods: {
              async updateVoteCount() {
@@ -77,12 +93,13 @@
             }
         },
         components: {
-            appHeader: Header
+            appHeader: Header,
+            appCommentContainer: CommentContainer
         }
     }
 </script>
 
-<style>
+<style scoped>
 .wrapper-poll {
     margin: 10rem 0;
 }
@@ -132,5 +149,75 @@
     top: 1rem;
     left: 1rem;
     color: black;
+}
+
+.comment__input {
+    width: 100%;
+    padding: 1rem 2rem;
+    transition: all 0.35s;
+    margin-bottom: 2rem;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.1);
+    min-height: 5rem;
+}
+.comment__input:focus {
+    min-height: 35rem;
+    padding: 6rem 4rem;
+    outline: none;
+}
+.comment__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    width: 60%;
+}
+.comment {
+    margin-top: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.comment__title {
+    font-size: 2rem;
+    color: #673ab7;
+    font-weight: 100;
+}
+.comment__user {
+    transform: translateY(-8rem) translateX(-12rem);
+    opacity: 0;
+    transition: all 0.5s;
+    color: #673ab7;
+    font-size: 1.4rem;
+}
+.comment__input:focus ~ .comment__user {
+    transform: translateY(-45rem) translateX(-15rem);
+    opacity: 1;
+}
+.comment__input:focus ~ .comment__user ~ .btn {
+    transform: translateY(-12rem) translateX(-12rem);
+    display: block;
+    opacity: 1;
+}
+.btn {
+    padding: 2rem 4rem;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,0.01);
+    background-color: #ede7f6;
+    color: #673ab7;
+    font-size: 1.4rem;
+    transition: all 0.4s;
+    opacity: 0;
+    display: none;
+}
+.btn:focus {
+    outline: none;
+}
+.btn:hover {
+    cursor: pointer;
 }
 </style>
