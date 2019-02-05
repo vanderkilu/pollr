@@ -46,10 +46,10 @@ const getRecentPolls = () => axios.get('poll/recent', headers)
 
 const updateCount = (pollId) => axios.put(`poll/${pollId}/update-count`, {}, headers)
 
-const getAllComment = async (pollId)=> {
-    let data = await axios.get(`poll/${pollId}/comments`, headers)
-    return data.data
+const getAllComment = (pollId)=> {
+    return axios.get(`poll/${pollId}/comments`, headers)
 }
+const commentCreate = (pollId, data) => axios.post(`poll/${pollId}/comments`,data, headers)
 
 export  { 
     login, 
@@ -63,6 +63,7 @@ export  {
     createPoll,
     getRecentPolls,
     updateCount,
-    getAllComment
+    getAllComment,
+    commentCreate
 }
 

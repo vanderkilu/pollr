@@ -15,8 +15,8 @@
 
         <div class="comment">
             <h3 class="comment__title">Responses</h3>
-            <form class="comment__form">
-                <textarea type="text" class="comment__input"></textarea>
+            <form class="comment__form" @submit.prevent="createComment">
+                <textarea type="text" class="comment__input" v-model="comment"></textarea>
                 <p class="comment__user"><span class="emoji"> 😉 </span> kweku kilu</p>
                 <button class="btn">publish</button>
             </form>
@@ -33,7 +33,7 @@
     import Header from './Header.vue'
     import CommentContainer from './CommentContainer.vue'
     import { getPoll,getAllOptionsForPoll, 
-    doVote,updateCount, getAllComment } from '../api'
+    doVote,updateCount, getAllComment, commentCreate } from '../api'
 
     export default {
         data() {
@@ -47,7 +47,8 @@
                 optionToUpdate: '',
                 voted: false,
                 isUser: false,
-                comments: [{}]
+                comments: [],
+                comment: ''
             }
         },
         mounted() {
@@ -55,8 +56,12 @@
                 this.increment = data.count;
                 this.optionToUpdate = data.option;
             })
+            this.socket.on('COMMENTED', (data) => {
+                this.comments.push(data)
+                console.log(this.comments)
+            })
             this.getData()
-            // this.comments = getAllComment()
+            this.getComments()
         },
         methods: {
              async updateVoteCount() {
@@ -65,6 +70,11 @@
             },
             generateTotalVote(instance) {
                 return instance.votes.length;
+            },
+            async getComments() {
+                let comments = await getAllComment(this.id)
+                this.comments = comments.data
+                console.log(this.comments)
             },
             async vote(option) {
                 if (!this.voted) {
@@ -90,6 +100,11 @@
                 let optionData = await getAllOptionsForPoll(this.id)
                 this.poll = pollData.data
                 this.options = optionData.data
+            },
+            async createComment() {
+                let comment = await commentCreate(this.id, {text: this.comment})
+                this.socket.emit('COMMENT', comment.data)
+                this.comment = ''
             }
         },
         components: {
@@ -197,11 +212,6 @@
     transform: translateY(-45rem) translateX(-15rem);
     opacity: 1;
 }
-.comment__input:focus ~ .comment__user ~ .btn {
-    transform: translateY(-12rem) translateX(-12rem);
-    display: block;
-    opacity: 1;
-}
 .btn {
     padding: 2rem 4rem;
     border: none;
@@ -211,8 +221,8 @@
     color: #673ab7;
     font-size: 1.4rem;
     transition: all 0.4s;
-    opacity: 0;
-    display: none;
+    opacity: 1;
+    margin-bottom: 5rem;
 }
 .btn:focus {
     outline: none;
