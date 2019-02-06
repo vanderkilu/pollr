@@ -20,7 +20,8 @@
                 <p class="comment__user"><span class="emoji"> 😉 </span> kweku kilu</p>
                 <button class="btn">publish</button>
             </form>
-            <app-comment-container v-for="comment in comments" :key="comment.id" :comment="comment">
+            <app-comment-container v-for="comment in comments" :key="comment.id" 
+            :comment="comment">
              </app-comment-container>
         </div>
         
@@ -48,7 +49,7 @@
                 voted: false,
                 isUser: false,
                 comments: [],
-                comment: ''
+                comment: '',
             }
         },
         mounted() {
@@ -174,10 +175,11 @@
     border: none;
     border-radius: 3px;
     box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.1);
-    min-height: 5rem;
+    height: 5rem;
+    color: #616161;
+    font-family: inherit;
 }
 .comment__input:focus {
-    min-height: 35rem;
     padding: 6rem 4rem;
     outline: none;
 }
@@ -209,7 +211,7 @@
     font-size: 1.4rem;
 }
 .comment__input:focus ~ .comment__user {
-    transform: translateY(-45rem) translateX(-15rem);
+    transform: translateY(-22rem) translateX(-20rem);
     opacity: 1;
 }
 .btn {

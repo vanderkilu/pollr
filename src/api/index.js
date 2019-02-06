@@ -50,6 +50,7 @@ const getAllComment = (pollId)=> {
     return axios.get(`poll/${pollId}/comments`, headers)
 }
 const commentCreate = (pollId, data) => axios.post(`poll/${pollId}/comments`,data, headers)
+const likeToggle = (commentId) => axios.put(`poll/comment/likes`, {id: commentId}, headers)
 
 export  { 
     login, 
@@ -64,6 +65,7 @@ export  {
     getRecentPolls,
     updateCount,
     getAllComment,
-    commentCreate
+    commentCreate,
+    likeToggle
 }
 
