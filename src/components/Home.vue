@@ -62,6 +62,8 @@ export default {
 .wrapper__main-text {
   font-size: 2rem;
   margin-bottom: 5rem;
+  color: #7b1fa2;
+  font-weight: 200;
 }
 .category {
   display: grid;

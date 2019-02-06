@@ -27,7 +27,7 @@
     opacity: 0;
     transform: translate(5rem)
 }
-.slide-right-leave-active, .slide-left-leave-active, .fade-leave-active {
+.fade-leave-active {
     position: absolute;
 }
 .decor {

@@ -5,9 +5,10 @@
     </app-header>
     <nav class="navigation">
         <div class="nav">
-            <router-link :to="{name:'recent'}" class="nav__link">Polls</router-link>
+            <router-link :to="{name:'recent'}" class="nav__link">Recent polls</router-link>
             <router-link :to="{name: 'create'}" class="nav__link">Create Poll</router-link>
             <router-link :to="{}" class="nav__link">Popular Polls</router-link>
+            <router-link :to="{}" class="nav__link">Manage your Polls</router-link>
         </div>
         <transition :name="transitionName">
             <router-view></router-view>
