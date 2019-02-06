@@ -26,20 +26,23 @@ module.exports = (app) => {
     pollRoutes.post('/create',authenticate,PollController.createPoll)
     pollRoutes.get('/category/:category_id/polls',authenticate,PollController.getPollsForCategory)
     pollRoutes.get('/categories',PollController.getAllCategory)
+    pollRoutes.get('/recent', authenticate, PollController.getRecentPolls)
     pollRoutes.post('/category',authenticate,PollController.createCategory)
     pollRoutes.get('/', authenticate, PollController.getAllPoll)
     pollRoutes.get('/:poll_id', authenticate, PollController.getPoll)
     pollRoutes.put('/:poll_id', authenticate, PollController.updatePoll)
     pollRoutes.delete('/:poll_id', authenticate, PollController.deletePoll)
     pollRoutes.post('/:poll_id/vote',authenticate,PollController.vote)
+    pollRoutes.put('/:poll_id/update-count',authenticate,PollController.updatePollCount)
     pollRoutes.get('/:poll_id/polloptions', authenticate, PollController.getPollOptionsForPoll)
     pollRoutes.put('/:poll_id/polloptions/:poll_option_id', authenticate, PollController.updatePollOption)
 
     //comment routes
-    pollRoutes.get('/:poll_id/comment',authenticate,CommentController.getAllCommentForPoll)
-    pollRoutes.post('/:poll_id/comment',authenticate,CommentController.createComment)
+    pollRoutes.get('/:poll_id/comments',authenticate,CommentController.getAllCommentForPoll)
+    pollRoutes.post('/:poll_id/comments',authenticate,CommentController.createComment)
     pollRoutes.get('/comment/reply',authenticate,CommentController.getAllReplyForComment),
     pollRoutes.post('/comment/reply',authenticate,CommentController.createReply)
+    pollRoutes.put('/comment/likes',authenticate,CommentController.like)
    
 
     return app.use('/api', apiRoutes)

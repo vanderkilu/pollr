@@ -130,3 +130,18 @@ exports.updatePollOption = (req, res) => {
     return res.json('can\'t perform such operation');
 })
 }
+
+exports.getRecentPolls = (req, res)=> {
+    Poll.find({},{}, { sort: { 'created' : -1 }}).limit(10)
+        .exec((err, polls)=> {
+            if (err) return res.json(err)
+            return res.json(polls)
+        })
+}
+
+exports.updatePollCount = (req, res) => {
+   Poll.findOneAndUpdate({_id: req.body.id}, {$inc: {count: 1}},{new: true}, (err,poll)=> {
+        if (err) return res.send(err)
+        return res.json(poll)
+    })
+}

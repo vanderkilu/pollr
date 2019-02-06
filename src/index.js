@@ -39,6 +39,9 @@ io.on('connection', (socket) => {
     socket.on('vote', (data) => {
         io.emit('vote', data);
     })
+    socket.on('COMMENT', (data)=> {
+        io.emit('COMMENTED', data)
+    })
 })
 
 

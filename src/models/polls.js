@@ -18,6 +18,14 @@ const PollSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category',
         required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    count: {
+        type:Number,
+        default: 0
     }
 });
 
