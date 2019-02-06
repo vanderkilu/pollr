@@ -10,9 +10,10 @@ import PollDetail from './components/PollDetail.vue'
 import PollEdit from './components/PollEdit.vue'
 import PollSearch from './components/PollSearch.vue'
 import Home from './components/Home.vue'
-import RecentPolls from './components/RecentPolls.vue'
-
+import PollWrapper from './components/PollWrapper.vue'
+import { getRecentPolls, getPopularPolls} from './api'
 Vue.use(Router)
+
 
 export default new Router({
   mode: 'history',
@@ -48,7 +49,14 @@ export default new Router({
         {
           path: '',
           name: 'recent',
-          component: RecentPolls
+          component: PollWrapper,
+          props: {name: getRecentPolls}
+        },
+        {
+          path: 'popular',
+          name: 'popular',
+          component: PollWrapper,
+          props: {name: getPopularPolls}
         },
         {
           path: 'category/:id/polls',

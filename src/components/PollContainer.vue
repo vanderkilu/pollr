@@ -5,13 +5,13 @@
     </app-header>
     <nav class="navigation">
         <div class="nav">
-            <router-link :to="{name:'recent'}" class="nav__link">Recent polls</router-link>
-            <router-link :to="{name: 'create'}" class="nav__link">Create Poll</router-link>
-            <router-link :to="{}" class="nav__link">Popular Polls</router-link>
-            <router-link :to="{}" class="nav__link">Manage your Polls</router-link>
+            <router-link :to="{name:'recent'}" class="nav__link" >Recent polls</router-link>
+            <router-link :to="{name: 'create'}" class="nav__link" exact>Create Poll</router-link>
+            <router-link :to="{name: 'popular'}" class="nav__link">Trending Polls</router-link>
+            <router-link :to="{name: 'u'}" class="nav__link" exact>Manage your Polls</router-link>
         </div>
         <transition :name="transitionName">
-            <router-view></router-view>
+            <router-view :key="$route.path"></router-view>
         </transition>
     </nav>
 </div>
@@ -27,6 +27,12 @@
             }
             else {
                 next();
+            }
+        },
+        computed: {
+            isVisited() {
+                this.visited = false;
+                this.visited = true
             }
         },
         components: {
@@ -57,6 +63,9 @@
     font-size: 1.5rem;
     padding: 0.8rem 2rem;
     margin: 0 2rem;
+}
+.router-link-exact-active{
+    color: #d81b60;
 }
 
 </style>
