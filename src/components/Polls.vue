@@ -5,7 +5,11 @@
                 <p class="poll-card__text ">{{poll.title}}</p>
                 <p class="poll-card__name ">by {{poll.user.profile}}</p>
                 <p class="poll-card__votes">{{poll.count || 0}} votes</p>
-                
+                <div class="decor-wrapper">
+                    <span class="decor decor-1"></span>
+                    <span class="decor decor-2"></span>
+                    <span class="decor decor-3"></span>
+                 </div>
             </div>
         </router-link>
     </div>
@@ -38,7 +42,7 @@ export default {
 <style scoped>
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem;
     margin: 10rem 0;
 }
@@ -68,9 +72,7 @@ export default {
     color: #bdbdbd;
 }
 .poll-card__votes {
-    background-color: #ede7f6;
     color: #7b1fa2;
-    padding: 0.8rem;
     font-size: 1.2rem;
     border-radius: 3px;
 }

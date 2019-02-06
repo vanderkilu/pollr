@@ -10,7 +10,7 @@
                 <slot></slot>
             </section>
             <section class="right-content">
-                <!-- <img src="../assets/poll.png" alt="preview"> -->
+                <img src="../assets/poll.svg" alt="poll image">
             </section>
         </div>
     </div>
@@ -79,6 +79,6 @@
     .right-content img {
         width: 100%;
         border-radius: 3px;
-        box-shadow: 0 1rem 2rem rgba(0,0,0,0.03);
+        transform: translateY(4rem);
     }
 </style>

@@ -9,7 +9,13 @@
       <div class="category">
           <router-link :to="{name: 'polls', params: {id: category._id}}" v-for="category in categories" :key="category.id" class="link">
                <div class="category__card">
-                    <h5 class="c" :class="category.style">{{category.name}}</h5>
+                    <p class="c">{{category.name}}</p>
+                    <div class="decor-wrapper">
+                        <span class="decor decor-1"></span>
+                        <span class="decor decor-2"></span>
+                        <span class="decor decor-3"></span>
+                    </div>
+                   
                 </div>
           </router-link>
       </div>
@@ -35,11 +41,6 @@ export default {
       async getCategories() {
           let data = await getAllCategory()
           this.categories = data.data
-          this.categories = this.categories.map(category => { 
-              category.style = this.generateClass()
-              return category
-          })
-          console.log(this.categories)
       }
   },
   components: {
@@ -71,13 +72,14 @@ export default {
 .category__card {
   padding: 2rem;
   border-radius: 3px;
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.03);
+  box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.01);
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 20rem;
+  color: #7b1fa2;
 }
 .category__card-background {
   width: 4rem;
@@ -90,30 +92,5 @@ export default {
   justify-content: center;
   margin-bottom: 2rem;
 }
-.category__card-count {
-    transition: all 0.5s;
-}
-.category__card-background:hover .category__card-count {
-    transform: rotate(90deg);
-}
-.c {
-    padding: 0.8rem;
-    border-radius: 3px;
-    font-weight: 100;
-}
-.c-1 {
-    background-color: #fffde7;
-    color: #f57f17;
-}
-.c-2 {
-    color:#afb42b;
-    background-color:#f9fbe7;
-}
-.c-3 {
-    color:#33691e;
-    background-color:#f1f8e9;
-}
-.link {
-    color: black;
-}
+
 </style>
