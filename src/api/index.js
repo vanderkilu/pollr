@@ -53,6 +53,9 @@ const commentCreate = (pollId, data) => axios.post(`poll/${pollId}/comments`,dat
 const likeToggle = (commentId) => axios.put(`poll/comment/likes`, {id: commentId}, headers)
 const getPopularPolls = () => axios.get(`poll/popular`, headers)
 const getPollsForUser = (userId) => axios.get(`account/user/${userId}/polls`, headers)
+const updatePoll = (pollId, data) => axios.put(`poll/${pollId}`, data, headers)
+const updatePollOption = (pollId, data)=> axios.put(`poll/${pollId}/polloptions`, data, headers)
+const deletePoll = (pollId)=> axios.delete(`poll/${pollId}`, headers)
 
 export  { 
     login, 
@@ -70,6 +73,9 @@ export  {
     commentCreate,
     likeToggle,
     getPopularPolls,
-    getPollsForUser
+    getPollsForUser,
+    updatePoll,
+    updatePollOption,
+    deletePoll
 }
 
