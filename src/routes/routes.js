@@ -21,6 +21,7 @@ module.exports = (app) => {
                     generateAccessToken, respond)
     authRoutes.get('/logout', AccountController.logout)
     authRoutes.get('/users', AccountController.users)
+    authRoutes.get('/user/:user_id/polls',authenticate, AccountController.getPollsForUser)
 
     //poll routes
     pollRoutes.post('/create',authenticate,PollController.createPoll)

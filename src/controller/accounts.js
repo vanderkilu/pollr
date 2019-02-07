@@ -1,5 +1,6 @@
 import User from '../models/user';
 import passport from 'passport';
+import Poll from '../models/polls';
 
 exports.register = (req, res) => {
     User.register(new User({username: req.body.email, profile: req.body.profile}),
@@ -20,5 +21,12 @@ exports.users = (req, res) => {
     User.find({}, (err, users) => {
         if (err) return res.send(err)
         return res.json(users)
+    })
+}
+
+exports.getPollsForUser = (req, res)=> {
+    Poll.find({user: req.params.user_id}, (err, polls)=> {
+        if (err) return res.send(err)
+        return res.json(polls)
     })
 }

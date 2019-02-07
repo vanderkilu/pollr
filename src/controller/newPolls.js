@@ -140,7 +140,7 @@ exports.getRecentPolls = (req, res)=> {
 }
 
 exports.updatePollCount = (req, res) => {
-   Poll.findOneAndUpdate({_id: req.body.id}, {$inc: {count: 1}},{new: true}, (err,poll)=> {
+   Poll.findOneAndUpdate({_id: req.params.poll_id}, {$inc: {count: 1}},{new: true}, (err,poll)=> {
         if (err) return res.send(err)
         return res.json(poll)
     })
