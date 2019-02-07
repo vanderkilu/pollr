@@ -8,7 +8,7 @@
             <router-link :to="{name:'recent'}" class="nav__link" >Recent polls</router-link>
             <router-link :to="{name: 'create'}" class="nav__link" exact>Create Poll</router-link>
             <router-link :to="{name: 'popular'}" class="nav__link">Trending Polls</router-link>
-            <router-link :to="{name: 'u'}" class="nav__link" exact>Manage your Polls</router-link>
+            <router-link :to="{name: 'manage'}" class="nav__link" exact>Manage your Polls</router-link>
         </div>
         <transition :name="transitionName">
             <router-view :key="$route.path"></router-view>
@@ -27,12 +27,6 @@
             }
             else {
                 next();
-            }
-        },
-        computed: {
-            isVisited() {
-                this.visited = false;
-                this.visited = true
             }
         },
         components: {

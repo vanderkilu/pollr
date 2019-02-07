@@ -31,7 +31,6 @@
 
 <script>
     import io from 'socket.io-client'
-    import Header from './Header.vue'
     import CommentContainer from './CommentContainer.vue'
     import { getPoll,getAllOptionsForPoll, 
     doVote,updateCount, getAllComment, commentCreate } from '../api'
@@ -109,7 +108,6 @@
             }
         },
         components: {
-            appHeader: Header,
             appCommentContainer: CommentContainer
         }
     }

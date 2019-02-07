@@ -11,6 +11,7 @@ import PollEdit from './components/PollEdit.vue'
 import PollSearch from './components/PollSearch.vue'
 import Home from './components/Home.vue'
 import PollWrapper from './components/PollWrapper.vue'
+import ManagePolls from './components/ManagePolls.vue'
 import { getRecentPolls, getPopularPolls} from './api'
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
           path: 'category/:id/polls',
           name: 'polls',
           component: Polls,
+        },
+        {
+          path: 'manage',
+          name: 'manage',
+          component: ManagePolls,
         },
         {
           path: 'create',

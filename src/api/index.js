@@ -2,7 +2,7 @@ import Axios from 'axios'
 import { getAuth } from '../helpers'
 const token =  getAuth().token
 const headers = {
-    headers: { Authorization: `Bearer ${token}` }
+    headers: { 'Authorization': `Bearer ${token}`}
 }
 
 const axios = Axios.create({
@@ -52,6 +52,7 @@ const getAllComment = (pollId)=> {
 const commentCreate = (pollId, data) => axios.post(`poll/${pollId}/comments`,data, headers)
 const likeToggle = (commentId) => axios.put(`poll/comment/likes`, {id: commentId}, headers)
 const getPopularPolls = () => axios.get(`poll/popular`, headers)
+const getPollsForUser = (userId) => axios.get(`account/user/${userId}/polls`, headers)
 
 export  { 
     login, 
@@ -68,6 +69,7 @@ export  {
     getAllComment,
     commentCreate,
     likeToggle,
-    getPopularPolls
+    getPopularPolls,
+    getPollsForUser
 }
 

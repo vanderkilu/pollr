@@ -39,7 +39,7 @@ export default {
             try {
                 let data = await login({email:this.email, password: this.password})
                 setAuth(data)
-                this.$router.push({name: 'pollContainer'}) 
+                this.$router.push({name: 'recent'}) 
             }
             catch(err) {
                 setTimeout(()=> this.isError = false, 3000)
