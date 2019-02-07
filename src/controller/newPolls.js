@@ -53,18 +53,18 @@ exports.getPoll = (req, res) => {
 }
 
 exports.updatePoll = (req, res) => {
-    Poll.findById(req.params.poll_id, (err, poll) => {
-        if (JSON.stringify(poll.user) === JSON.stringify(req.user.id) ) {
-            poll.title = req.body.title;
-            poll.save((err) => {
-                if (err) return res.send(err);
-                return res.json(poll);
-            });
-        }
-        else {
-            return res.send('you cant perform operation');
-        }
-    });
+    Poll.findOneAndUpdate({_id: req.params.poll_id}, {$set: {title: req.body.poll.title}},{new: true}, (err,poll)=>{
+        if (err) return res.send(err) 
+        return res.json(poll)
+    })
+}
+
+exports.updatePollOption = (req, res) => {
+    let option = req.body.option
+    PollOption.findOneAndUpdate({_id: option._id}, {$set: {value: option.value}},{new: true},(err, opt)=> {
+            if (err) return res.send(err)
+            return res.send(opt)
+    })
 }
 
 exports.deletePoll = (req, res) => {
@@ -112,23 +112,6 @@ exports.getPollOptionsForPoll = (req, res) => {
         if (err) return res.send(err)
         return res.json(options)
     })
-}
-
-exports.updatePollOption = (req, res) => {
-    Poll.findById(req.params.poll_id, (err, poll) => {
-        if (JSON.stringify(poll.user) === JSON.stringify(req.user.id) ) {
-            let pollOption = poll.pollOptions.id(req.params.poll_option_id);
-            pollOption.set(req.body);
-            pollOption.save((err) => {
-                if (err) return res.send(err);
-                poll.save(err => {
-                    if (err) return res.send(err)
-                    return res.json(pollOption);
-                })
-            })
-    }
-    return res.json('can\'t perform such operation');
-})
 }
 
 exports.getRecentPolls = (req, res)=> {

@@ -37,7 +37,7 @@ module.exports = (app) => {
     pollRoutes.post('/:poll_id/vote',authenticate,PollController.vote)
     pollRoutes.put('/:poll_id/update-count',authenticate,PollController.updatePollCount)
     pollRoutes.get('/:poll_id/polloptions', authenticate, PollController.getPollOptionsForPoll)
-    pollRoutes.put('/:poll_id/polloptions/:poll_option_id', authenticate, PollController.updatePollOption)
+    pollRoutes.put('/:poll_id/polloptions', authenticate, PollController.updatePollOption)
 
     //comment routes
     pollRoutes.get('/:poll_id/comments',authenticate,CommentController.getAllCommentForPoll)
