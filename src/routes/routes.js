@@ -27,6 +27,7 @@ module.exports = (app) => {
     pollRoutes.get('/category/:category_id/polls',authenticate,PollController.getPollsForCategory)
     pollRoutes.get('/categories',PollController.getAllCategory)
     pollRoutes.get('/recent', authenticate, PollController.getRecentPolls)
+    pollRoutes.get('/popular', authenticate, PollController.getPopularPolls)
     pollRoutes.post('/category',authenticate,PollController.createCategory)
     pollRoutes.get('/', authenticate, PollController.getAllPoll)
     pollRoutes.get('/:poll_id', authenticate, PollController.getPoll)

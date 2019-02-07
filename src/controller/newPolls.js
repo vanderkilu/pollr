@@ -145,3 +145,14 @@ exports.updatePollCount = (req, res) => {
         return res.json(poll)
     })
 }
+
+exports.getPopularPolls = (req, res) => {
+    Poll.find({})
+        .sort('-count')
+        .limit(10)
+        .populate('user', 'profile')
+        .exec((err, polls)=> {
+            if (err) return res.send(err)
+            return res.json(polls)
+        })
+}
