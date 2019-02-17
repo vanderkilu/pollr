@@ -3,7 +3,7 @@ import expressJwt from 'express-jwt';
 import Poll from '../models/polls';
 
 const TOKENTIME = 60*60*24*30;
-const SECRET = "myonlysecret";
+const SECRET = new Buffer('supersecret','base64' );
 
 let authenticate = expressJwt({secret: SECRET});
 
@@ -12,7 +12,7 @@ let generateAccessToken = (req, res, next) => {
     req.token = jwt.sign(
         {id: req.user.id},
         SECRET,
-        {expiresIn: TOKENTIME}
+        {expiresIn: TOKENTIME},
     );
     next();
 }
@@ -26,17 +26,8 @@ let respond = (req, res) => {
     });
 }
 
-let findPoll = (req, res, next) => {
-    Poll.findById(req.params.poll_id, (err, poll) => {
-        if (err) res.next(err);
-        req.locals.poll = {poll,};
-        next();
-    })
-}
-
 module.exports =  {
     authenticate,
     generateAccessToken,
-    respond,
-    findPoll
+    respond
 }

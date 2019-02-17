@@ -22,6 +22,7 @@ mongoose.connect(config.mongooseUrl);
 app.use(bodyParser.json({
     limit: config.limit
 }));
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(passport.initialize());
 passport.use(new LocalStrategy({
