@@ -230,4 +230,9 @@
 .btn:hover {
     cursor: pointer;
 }
+@media only screen and (max-width : 900px) {  
+    .options {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
 </style>

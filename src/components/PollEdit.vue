@@ -30,10 +30,6 @@ export default {
         }
     },
     methods: {
-        async getCategories() {
-            let categories = await getAllCategory()
-            this.categories = categories.data
-        },
         async getOptions() {
             let options = await getAllOptionsForPoll(this.id)
             this.options = options.data
@@ -56,7 +52,6 @@ export default {
         }
     },
     mounted() {
-        this.getCategories()
         this.getOptions()
         this.thisPoll()
     }
@@ -139,5 +134,23 @@ export default {
 .btn-auth-colored-danger {
     background-color: #ffcdd2;
     color: #d81b60;
+}
+@media only screen and (max-width : 900px) { 
+    .wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .wrapper-side {
+        padding: 2.5rem;
+    }
+    .form {
+        text-align: center;
+        padding: 4rem;
+    }
+    .input {
+        width: 12rem;
+    }
+    .btn-auth {
+        padding: 2rem 4rem;
+    }
 }
 </style>

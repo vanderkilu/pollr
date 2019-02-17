@@ -7,6 +7,26 @@
 </template>
 
 <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      box-sizing: border-box;
+      font-size: 62.5%;
+    }
+    a:link, a:visited {
+      text-decoration: none;
+      color: white;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      font-weight: 300;
+      background-color: whitesmoke;
+    }
 .fade-enter-active, .fade-leave-active {
   transition: all 0.5s ease-out;
 }

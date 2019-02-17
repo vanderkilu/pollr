@@ -23,6 +23,7 @@
         height: 75vh;
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
         padding: 2rem 10rem;
     }
     .container {
@@ -80,5 +81,24 @@
         width: 100%;
         border-radius: 3px;
         transform: translateY(4rem);
+    }
+    @media only screen and (max-width : 900px) {
+        .wrapper {
+            overflow: hidden;
+            padding: 2rem 5rem;
+        }
+        .right-content img  {
+            width: 75%;
+            margin-top: 3rem;
+        }
+        .container {
+             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        .left-content__text--bold {
+            font-size: 2rem;
+        }
+        .left-content__text--small {
+            font-size: 1.4rem;
+        }
     }
 </style>

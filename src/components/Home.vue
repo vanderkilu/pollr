@@ -94,5 +94,13 @@ export default {
   justify-content: center;
   margin-bottom: 2rem;
 }
-
+@media only screen and (max-width : 900px) { 
+  .category {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .wrapper__main {
+    padding: 5rem;
+    background-color: whitesmoke;
+  }
+}
 </style>

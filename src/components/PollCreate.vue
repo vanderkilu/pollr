@@ -154,5 +154,23 @@
 .select:focus {
     outline: none;
 }
+@media only screen and (max-width : 900px) { 
+    .wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .wrapper-side {
+        padding: 2.5rem;
+    }
+    .form {
+        text-align: center;
+        padding: 4rem;
+    }
+    .input {
+        width: 12rem;
+    }
+    .btn-auth {
+        padding: 2rem 4rem;
+    }
+}
 
 </style>

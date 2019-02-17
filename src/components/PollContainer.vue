@@ -61,6 +61,15 @@
 .router-link-exact-active{
     color: #d81b60;
 }
+@media only screen and (max-width : 900px) {
+    .nav {
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .navigation {
+        width: 70%;
+    }
+}
 
 </style>
 
