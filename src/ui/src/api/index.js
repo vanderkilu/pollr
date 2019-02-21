@@ -10,11 +10,11 @@ const headers = {
 // })
 
 const login = (data) => {
-    return axios.post('/api/account/login', data)
+    return axios.post('api/account/login', data)
 }
 
 const signup = (data)=> {
-    return axios.post('/api/account/register', data)
+    return axios.post('api/account/register', data)
 }
 
 const getAllCategory = () => {
