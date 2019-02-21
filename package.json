@@ -6,7 +6,8 @@
   "scripts": {
     "babel-node": "babel-node",
     "start": "nodemon --exec  npm run  babel-node ./src/index.js",
-    "test": "mocha --compilers js:babel-core/register src/test/*.js"
+    "test": "mocha --compilers js:babel-core/register src/test/*.js",
+    "heroku-postbuild": "cd src/ui && npm install --only=dev && npm install && npm run build"
   },
   "author": "vanderkiliku@gmail.com",
   "license": "ISC",
