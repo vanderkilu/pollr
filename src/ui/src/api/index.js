@@ -18,7 +18,7 @@ const signup = (data)=> {
 }
 
 const getAllCategory = () => {
-    return axios.get('/api/poll/categories', headers)
+    return axios.get('api/poll/categories', headers)
 }
 
 const getAllPoll = () => {
