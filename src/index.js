@@ -9,7 +9,6 @@ const router = require('./routes/routes')
 const LocalStrategy = require('passport-local').Strategy
 const path = require('path')
 
-
 require('dotenv').config()
 
 

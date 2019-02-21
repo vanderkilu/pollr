@@ -6,7 +6,7 @@ const headers = {
 }
 
 // const axios = Axios.create({
-//     baseURL: 'http://localhost:30016/api',
+//     baseURL: 'http://localhost:30016',
 // })
 
 const login = (data) => {
