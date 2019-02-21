@@ -3,14 +3,14 @@ import bodyParser from  'body-parser';
 import mongoose from 'mongoose';
 import http from 'http';
 import passport from  'passport';
-import config from './config';
 import User from './models/user';
 const cors = require('cors')
 const router = require('./routes/routes')
 const LocalStrategy = require('passport-local').Strategy
+const path = require('path')
 
 
-
+require('dotenv').config()
 
 
 const app = express()
@@ -18,9 +18,9 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 
-mongoose.connect(config.mongooseUrl);
+mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, (err)=> console.log('connected'));
 app.use(bodyParser.json({
-    limit: config.limit
+    limit: process.env.LIMIT
 }));
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -48,10 +48,15 @@ io.on('connection', (socket) => {
 
 router(app);
 
+app.use(express.static(path.join(__dirname, "ui", "dist")))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "ui", "dist", "index.html"))
+})
+
 if (!module.parent) {
-    server.listen(config.port, (err)=> {
+    server.listen(process.env.PORT, (err)=> {
         if (err) return err;
-        console.log(config.port);
+        console.log(process.env.PORT);
     });
 }
 module.exports = app
