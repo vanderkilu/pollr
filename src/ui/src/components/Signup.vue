@@ -46,7 +46,7 @@ export default {
             }
             catch(err) {
                 setTimeout(()=> this.isError = false, 3000)
-                 this.isError = true;
+                 this.isError = true
             } 
         }
     }

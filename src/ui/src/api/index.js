@@ -1,24 +1,24 @@
-import axios from 'axios'
+import Axios from 'axios'
 import { getAuth } from '../helpers'
 const token =  getAuth().token
 const headers = {
     headers: { 'Authorization': `Bearer ${token}`}
 }
 
-// const axios = Axios.create({
-//     baseURL: 'http://localhost:30016',
-// })
+const axios = Axios.create({
+    baseURL: 'http://localhost:30016',
+})
 
 const login = (data) => {
-    return axios.post('api/account/login', data)
+    return axios.post('/api/account/login', data)
 }
 
 const signup = (data)=> {
-    return axios.post('api/account/register', data)
+    return axios.post('/api/account/register', data)
 }
 
 const getAllCategory = () => {
-    return axios.get('api/poll/categories', headers)
+    return axios.get('/api/poll/categories', headers)
 }
 
 const getAllPoll = () => {

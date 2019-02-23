@@ -23,5 +23,10 @@ export default {
         width: 60%;
         margin: 5rem auto;
     }
+    @media only screen and (max-width : 900px) { 
+        .auth-container {
+            width: 80%;
+        }
+    }
     
 </style>

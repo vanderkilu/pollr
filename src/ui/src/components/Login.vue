@@ -151,5 +151,16 @@ export default {
 .btn-auth-colored {
      background-color:#673ab7;
 }
+@media only screen and (max-width : 900px) { 
+    .login-card {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .content-left__text-bold, .content-right__text-bold {
+        font-size: 2rem;
+    }
+    .btn-auth {
+        padding: 1.8rem 3rem;
+    }
+}
 </style>
 

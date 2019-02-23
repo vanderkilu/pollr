@@ -3,7 +3,7 @@ import expressJwt from 'express-jwt';
 import Poll from '../models/polls';
 
 const TOKENTIME = 60*60*24*30;
-const SECRET = new Buffer('supersecret','base64' );
+const SECRET = 'supersecret';
 
 let authenticate = expressJwt({secret: SECRET});
 

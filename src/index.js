@@ -17,7 +17,23 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 
-mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, (err)=> console.log('connected'));
+const mongodbUri = process.env.DB_URL;
+mongoose.connect(mongodbUri, {
+  useNewUrlParser: true,
+  auth: {
+    user: 'kilu',
+    password: 'P@$$w0rd'
+  }
+})
+const conn = mongoose.connection;    
+conn.on('error', console.error.bind(console, 'connection error:')) 
+ 
+conn.once('open', () =>{
+ console.log('connected to adatabase')                       
+})
+
+
+
 app.use(bodyParser.json({
     limit: process.env.LIMIT
 }));
@@ -31,8 +47,6 @@ passport.use(new LocalStrategy({
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-
 app.use(cors())
 
 io.on('connection', (socket) => {
@@ -47,10 +61,10 @@ io.on('connection', (socket) => {
 
 router(app);
 
-app.use(express.static(path.join(__dirname, "ui", "dist")))
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "ui", "dist", "index.html"))
-})
+// app.use(express.static(path.join(__dirname, "ui", "dist")))
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "ui", "dist", "index.html"))
+// })
 
 if (!module.parent) {
     server.listen(process.env.PORT, (err)=> {
