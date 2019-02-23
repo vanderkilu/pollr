@@ -2,6 +2,7 @@
 this is the server side to my polling/voting application that i i built as a challenge to the #100daysofcode challenge
 
 It is often said to become an expert, you should continue to practice. This is one of my "practice project" 
+check it out on [pollr.herokuapp.com](https://pollr.herokuapp.com/)
 
 ## what i learnt building this project
 
