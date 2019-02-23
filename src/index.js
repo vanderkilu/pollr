@@ -61,10 +61,10 @@ io.on('connection', (socket) => {
 
 router(app);
 
-// app.use(express.static(path.join(__dirname, "ui", "dist")))
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "ui", "dist", "index.html"))
-// })
+app.use(express.static(path.join(__dirname, "ui", "dist")))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "ui", "dist", "index.html"))
+})
 
 if (!module.parent) {
     server.listen(process.env.PORT, (err)=> {
