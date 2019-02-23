@@ -69,7 +69,7 @@ app.get("*", (req, res) => {
 })
 
 if (!module.parent) {
-    server.listen(process.env.PORT, (err)=> {
+    server.listen(process.env.PORT || 30020, (err)=> {
         if (err) return err;
         console.log(process.env.PORT);
     });
