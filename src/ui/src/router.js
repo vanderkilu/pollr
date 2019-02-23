@@ -90,10 +90,6 @@ export default new Router({
       path: '/search',
       name: 'search',
       component: PollSearch,
-    },
-    {
-      path: '*',
-      component: Home
     }
   ]
 
