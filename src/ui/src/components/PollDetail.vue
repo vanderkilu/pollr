@@ -43,7 +43,7 @@
                 pollClass: 'po-',
                 options: [],
                 increment: 0,
-                socket: io(),
+                socket: io('http://localhost:3000'),
                 optionToUpdate: '',
                 voted: false,
                 isUser: false,

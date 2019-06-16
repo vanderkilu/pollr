@@ -1,13 +1,13 @@
-import axios from 'axios'
+import Axios from 'axios'
 import { getAuth } from '../helpers'
 const token =  getAuth().token
 const headers = {
     headers: { 'Authorization': `Bearer ${token}`}
 }
 
-// const axios = Axios.create({
-//     baseURL: 'http://localhost:30016',
-// })
+const axios = Axios.create({
+    baseURL: 'http://localhost:3000',
+})
 
 const login = (data) => {
     return axios.post('/api/account/login', data)
