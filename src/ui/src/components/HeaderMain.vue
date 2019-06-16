@@ -63,11 +63,6 @@
     .btn-cta:hover {
         color: gray;
     }
-    .logo {
-        width: 4rem;
-        height: 4rem;
-        display: block;
-    }
     .login {
         margin-left: 2rem;
         font-size: 1.7rem;

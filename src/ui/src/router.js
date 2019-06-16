@@ -91,8 +91,5 @@ export default new Router({
       name: 'search',
       component: PollSearch,
     }
-  ],
-  scrollBehavior () {
-    return { x: 0, y: 0 }
-  }
+  ]
 });

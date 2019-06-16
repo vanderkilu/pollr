@@ -10,7 +10,7 @@
             <router-link :to="{name: 'popular'}" class="nav__link">Trending Polls</router-link>
             <router-link :to="{name: 'manage'}" class="nav__link" exact>Manage your Polls</router-link>
         </div>
-        <transition :name="transitionName">
+        <transition name="fade" mode="out-in">
             <router-view :key="$route.path"></router-view>
         </transition>
     </nav>
@@ -32,13 +32,6 @@
         components: {
             appHeader: HeaderMain
         },
-        watch: {
-        '$route' (to, from) {
-            const toDepth = to.path.split('/').length
-            const fromDepth = from.path.split('/').length
-            this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-            }
-        }
     }
 </script>
 
@@ -47,6 +40,8 @@
     padding: 5rem;
     width: 60%;
     margin: 2rem auto;
+    scroll-behavior: smooth !important;
+    height: 100vh;
 }
 .nav {
     display: flex;

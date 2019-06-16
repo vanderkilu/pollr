@@ -21,7 +21,7 @@ export default {
                 this.polls = data.data
             }
             catch(err) {
-                this.$router.go()
+                console.log(err)
             }
         },
     },
