@@ -58,7 +58,6 @@
             })
             this.socket.on('COMMENTED', (data) => {
                 this.comments.push(data)
-                console.log(this.comments)
             })
             this.getData()
             this.getComments()
@@ -74,7 +73,6 @@
             async getComments() {
                 let comments = await getAllComment(this.id)
                 this.comments = comments.data
-                console.log(this.comments)
             },
             async vote(option) {
                 if (!this.voted) {

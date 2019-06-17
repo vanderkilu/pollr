@@ -39,7 +39,7 @@ export default {
         async register() {
             let credentials = {email:this.email, password:this.password, profile:this.profile};
             try {
-                let signupData = await signup(credentials)
+                await signup(credentials)
                 let loginData = await login(credentials)
                 setAuth(loginData)
                 this.$router.push({name: 'pollContainer'})

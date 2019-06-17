@@ -16,14 +16,9 @@ export default {
     },
     methods: {
         async getPolls() {
-            try {
-                let data = await this.name()
-                this.polls = data.data
-            }
-            catch(err) {
-                console.log(err)
-            }
-        },
+            let data = await this.name()
+            this.polls = data.data
+        }
     },
     mounted() {
         this.getPolls()
