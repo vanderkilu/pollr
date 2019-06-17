@@ -1,10 +1,16 @@
 <template>
     <div class="wrapper-poll">
-        <h5 class="question">
-            {{poll.title}}
-        </h5>
+        <div class="question">
+            <h1 class="question__text">{{poll.title}} </h1>
+            <div class="question__detail">
+                asked by 
+                <span class="question__user"> {{poll.user.profile}}</span>
+                on
+                <span class="question__time">april 2016</span>
+            </div>
+        </div>
         <div class="options">
-            <div class="poll-option" :class="pollClass+i" 
+            <div class="poll-option"
                                     v-for="(option,i) in options" 
                                     :key="i"
                                     @click="vote(option)"> 
@@ -17,7 +23,6 @@
             <h3 class="comment__title">Responses</h3>
             <form class="comment__form" @submit.prevent="createComment">
                 <textarea type="text" class="comment__input" v-model="comment"></textarea>
-                <p class="comment__user"><span class="emoji"> 😉 </span> kweku kilu</p>
                 <button class="btn">publish</button>
             </form>
             <app-comment-container v-for="comment in comments" :key="comment.id" 
@@ -98,6 +103,7 @@
                 let optionData = await getAllOptionsForPoll(this.id)
                 this.poll = pollData.data
                 this.options = optionData.data
+                console.log(this.poll)
             },
             async createComment() {
                 let comment = await commentCreate(this.id, {text: this.comment})
@@ -116,16 +122,27 @@
     margin: 10rem 0;
 }
 .question {
-    background-color: #ede7f6;
     color: #673ab7;
-    font-size: 1.6rem;
-    padding: 6rem 4rem;
-    text-align: center;
+    text-align: left;
     margin-bottom: 10rem;
+}
+.question__detail {
+    font-size: 1.5rem;
+    color: #bdbdbd;
+    margin-top: 1rem;
+}
+.question__user {
+    color:#616161;
+}
+.question__text {
+    font-size: 3rem;
+}
+.question__vote {
+    margin-top: 2rem;
 }
 .options {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
 }
 
@@ -139,22 +156,9 @@
     border-radius: 4px;
     position: relative;
     cursor: pointer;
-}
-.po-0 {
-    background-color: #ede7f6;
+    background-color: white;
     color: #673ab7;
-}
-.po-1 {
-    background-color: #fce4ec;
-    color: #d81b60;
-}
-.po-2 {
-    background-color: #e3f2fd;
-    color: #1565c0;
-}
-.po-3 {
-    background-color: #f9fbe7;
-    color: #afb42b;
+    font-weight: 600;
 }
 .poll-count {
     position: absolute;
@@ -184,11 +188,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 10rem;
+    margin-top: 4rem;
     width: 60%;
 }
 .comment {
-    margin-top: 15rem;
+    margin-top: 30rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,23 +203,12 @@
     color: #673ab7;
     font-weight: 100;
 }
-.comment__user {
-    transform: translateY(-8rem) translateX(-12rem);
-    opacity: 0;
-    transition: all 0.5s;
-    color: #673ab7;
-    font-size: 1.4rem;
-}
-.comment__input:focus ~ .comment__user {
-    transform: translateY(-22rem) translateX(-20rem);
-    opacity: 1;
-}
 .btn {
     padding: 2rem 4rem;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     box-shadow: 0 1rem 2rem rgba(0,0,0,0.01);
-    background-color: #ede7f6;
+    background-color: white;
     color: #673ab7;
     font-size: 1.4rem;
     transition: all 0.4s;

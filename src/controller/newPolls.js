@@ -46,10 +46,13 @@ exports.getPollsForCategory = (req, res) => {
 }
 
 exports.getPoll = (req, res) => {
-    Poll.findById(req.params.poll_id, (err, poll)=> {
-        if (err) return res.send(err)
-        return res.json(poll)
-    })
+    Poll.findById(req.params.poll_id)
+        .populate('category')
+        .populate('user')
+        .exec((err, poll)=> {
+            if (err) return res.send(err)
+            return res.json(poll)
+        })
 }
 
 exports.updatePoll = (req, res) => {

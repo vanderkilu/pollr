@@ -51,12 +51,12 @@ export default {
     .comment-container {
         display: grid;
         grid-template-columns: 5rem 1fr;
-        padding: 3rem;
+        padding: 1rem 3rem;
         background-color: white;
         box-shadow: 0.1rem 0.1rem 0.4rem rgba(0, 0, 0, 0.1);
         margin-bottom: 1rem;
         width: 60%;
-
+        border-radius: 5px;
     }
     .comment__user-initial {
         grid-row: 1 / span 2;
@@ -84,7 +84,7 @@ export default {
     }
     .comment__likes-count {
         grid-column: 1 / 3;
-        margin-top: 2rem;
+        margin-top: 1rem;
         color: #673ab7;
         cursor: pointer;
         padding: 0.4rem;

@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .wrapper__main {
   padding: 8rem 10rem;
-  background-color: whitesmoke;
+  background-color:#eeeeee;
 }
 .wrapper__main-text {
   font-size: 2rem;

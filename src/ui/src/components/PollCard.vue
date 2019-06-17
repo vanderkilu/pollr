@@ -39,8 +39,10 @@ export default {
     box-shadow: 0 1rem 2rem rgba(0,0,0,0.03);
     background-color: white;
     font-size: 1.4rem;
+    font-weight: 600;
     transition: all 0.4s;
     height: 20rem;
+    text-align: center;
 }
 .poll-card:hover {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.03);

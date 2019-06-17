@@ -1,15 +1,15 @@
 <template>
 <div>
-    <app-header>
-         <router-link :to="{name: 'create'}" class="btn-cta">create poll now</router-link>
-    </app-header>
-    <nav class="navigation">
-        <div class="nav">
+     <div class="nav">
+           <router-link :to="{name: 'home'}">
+                <img src=../assets/logo.png class="logo" alt="logo">
+           </router-link>
             <router-link :to="{name:'recent'}" class="nav__link" >Recent polls</router-link>
             <router-link :to="{name: 'create'}" class="nav__link" exact>Create Poll</router-link>
             <router-link :to="{name: 'popular'}" class="nav__link">Trending Polls</router-link>
             <router-link :to="{name: 'manage'}" class="nav__link" exact>Manage your Polls</router-link>
-        </div>
+    </div>
+    <nav class="navigation">
         <transition name="fade" mode="out-in">
             <router-view :key="$route.path"></router-view>
         </transition>
@@ -45,7 +45,9 @@
 }
 .nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    padding: 2rem;
+    background-color: white;
 }
 .nav__link {
     color: #673ab7;

@@ -25,7 +25,7 @@
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     font-weight: 300;
-    background-color: whitesmoke;
+    background-color:#eeeeee;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.3s;
