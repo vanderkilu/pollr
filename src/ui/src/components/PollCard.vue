@@ -2,6 +2,7 @@
     <div class="wrapper">
         <router-link :to="{name: path, params:{id: poll._id}}" class="link" v-for="poll in polls" :key="poll._id">
             <div class="poll-card">
+                <span class="poll-card__category">{{poll.category.name}}</span>
                 <h1 class="poll-card__text ">{{poll.title}}</h1>
                 <p class="poll-card__time">created on 18th july 1990 </p>
                 <p class="poll-card__votes">{{poll.count}} votes</p>
@@ -33,7 +34,7 @@ export default {
     border-radius: 5px;
     box-shadow: 0 1rem 2rem rgba(0,0,0,0.03);
     background-color: white;
-    transition: all 0.4s;
+    transition: all 0.5s;
     height: 15rem;
     position: relative;
 }
@@ -41,7 +42,7 @@ export default {
     margin: 0.2rem;
 }
 .poll-card:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.03);
+   transform: scale(1.02) translateX(2rem);
 }
 .poll-card__text {
     color: #616161;
@@ -63,6 +64,14 @@ export default {
     right: 2rem;
     border: 2px solid #e1bee7;
     box-shadow: 0 0.5rem 1rem #f3e5f5;
+}
+.poll-card__category {
+    color: #b71c1c;
+    font-size: 1.2rem;
+    border-radius: 3px;
+    padding: 0.5rem 2rem;
+    background-color: #ffebee;
+    border-radius: 6rem;
 }
 .link {
     color: black;

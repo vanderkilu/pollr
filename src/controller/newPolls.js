@@ -38,9 +38,10 @@ exports.getAllCategory = (req, res) => {
 
 exports.getPollsForCategory = (req, res) => {
     Poll.find({category: req.params.category_id})
-        .populate('user', 'profile')
-        .exec((err, polls) => {
-            if (err) return res.send(err)
+        .populate('category')
+        .populate('user')
+        .exec((err, polls)=> {
+            if (err) return res.json(err)
             return res.json(polls)
         })
 }
@@ -119,6 +120,8 @@ exports.getPollOptionsForPoll = (req, res) => {
 
 exports.getRecentPolls = (req, res)=> {
     Poll.find({},{}, { sort: { 'created' : -1 }}).limit(10)
+        .populate('category')
+        .populate('user')
         .exec((err, polls)=> {
             if (err) return res.json(err)
             return res.json(polls)
@@ -136,9 +139,10 @@ exports.getPopularPolls = (req, res) => {
     Poll.find({})
         .sort('-count')
         .limit(10)
-        .populate('user', 'profile')
+        .populate('category')
+        .populate('user')
         .exec((err, polls)=> {
-            if (err) return res.send(err)
+            if (err) return res.json(err)
             return res.json(polls)
         })
 }
