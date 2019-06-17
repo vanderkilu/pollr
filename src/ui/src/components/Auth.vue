@@ -18,6 +18,7 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        margin-top: 2rem;
     }
     .auth-container {
         width: 60%;

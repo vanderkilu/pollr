@@ -3,9 +3,9 @@
         <div class="login-card">
              <div class="content-right">
                 <h3 class="content-right__text-bold"> create an account </h3>
-                <transition name="blank">
+                <transition-group name="blank" mode="out-in">
                     <h5 class="error" v-if="isError"> please, do not leave any fields blank </h5>
-                </transition>
+                </transition-group>
                 <form class="auth-form" @submit.prevent="register()">
                     <input type="text" placeholder="name" class="input" v-model="profile">
                     <input type="email" placeholder="email" class="input" v-model="email">
@@ -58,26 +58,7 @@ export default {
 
 
 
-<style >
-.error {
-    padding: 4rem;
-    border-radius: 4px;
-    background-color: #fce4ec;
-    color: #d81b60;
-    margin: 2rem 0;
-    font-weight: 200;
-    font-size: 1rem;
-}
-
-.blank-enter-active, .blank-leave-active {
-    transition: all 1s;
-}
-.blank-enter, .blank-leave-to {
-    opacity: 0;
-    transform: translateY(-2rem)
-}
-.blank-leave-active {
-    position: absolute;
-}
+<style scoped>
+    @import url(../assets/auth.css);
 </style>
 
