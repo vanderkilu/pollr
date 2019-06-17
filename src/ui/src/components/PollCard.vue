@@ -2,15 +2,10 @@
     <div class="wrapper">
         <router-link :to="{name: path, params:{id: poll._id}}" class="link" v-for="poll in polls" :key="poll._id">
             <div class="poll-card">
-                <p class="poll-card__text ">{{poll.title}}</p>
-                <p class="poll-card__name ">by {{poll.user.profile}}</p>
+                <h1 class="poll-card__text ">{{poll.title}}</h1>
+                <p class="poll-card__time">created on 18th july 1990 </p>
                 <p class="poll-card__votes">{{poll.count}} votes</p>
                 <slot></slot>
-                <div class="decor-wrapper">
-                    <span class="decor decor-1"></span>
-                    <span class="decor decor-2"></span>
-                    <span class="decor decor-3"></span>
-                 </div>
             </div>
         </router-link>
     </div>
@@ -25,7 +20,7 @@ export default {
 <style scoped>
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: 2rem;
     margin: 10rem 0;
 }
@@ -33,26 +28,26 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    border-radius: 3px;
+    align-items: flex-start;
+    padding: 1rem 4rem;
+    border-radius: 5px;
     box-shadow: 0 1rem 2rem rgba(0,0,0,0.03);
     background-color: white;
-    font-size: 1.4rem;
-    font-weight: 600;
     transition: all 0.4s;
-    height: 20rem;
-    text-align: center;
+    height: 15rem;
+    position: relative;
+}
+.poll-card > * {
+    margin: 0.2rem;
 }
 .poll-card:hover {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.03);
 }
 .poll-card__text {
-    color: #7b1fa2;
+    color: #616161;
+    font-size: 2.5rem;
 }
-.poll-card__name {
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
+.poll-card__time {
     font-size: 1.2rem;
     color: #bdbdbd;
 }
@@ -60,10 +55,14 @@ export default {
     color: #7b1fa2;
     font-size: 1.2rem;
     border-radius: 3px;
-}
-.poll-card__time {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: #f3e5f5;
+    border-radius: 6rem;
+    position: absolute;
+    bottom: 1rem; 
+    right: 2rem;
+    border: 2px solid #e1bee7;
+    box-shadow: 0 0.5rem 1rem #f3e5f5;
 }
 .link {
     color: black;
