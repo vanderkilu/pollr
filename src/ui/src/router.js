@@ -8,7 +8,6 @@ import Polls from './components/Polls.vue'
 import PollCreate from './components/PollCreate.vue'
 import PollDetail from './components/PollDetail.vue'
 import PollEdit from './components/PollEdit.vue'
-import PollSearch from './components/PollSearch.vue'
 import Home from './components/Home.vue'
 import PollWrapper from './components/PollWrapper.vue'
 import ManagePolls from './components/ManagePolls.vue'
@@ -85,11 +84,6 @@ export default new Router({
           component: PollEdit,
         },
       ]
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: PollSearch,
     }
   ]
 });
