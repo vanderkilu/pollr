@@ -37,7 +37,7 @@
 
 <style scoped>
 .navigation {
-    padding: 5rem;
+    padding: 2rem;
     width: 60%;
     margin: 2rem auto;
     scroll-behavior: smooth !important;
