@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         async getPolls() {
-            let data = await this.name()
+            const data = await this.name()
             this.polls = data.data
         }
     },

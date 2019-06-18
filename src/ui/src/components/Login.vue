@@ -37,7 +37,7 @@ export default {
     methods: {
         async loginUser() {
             try {
-                let data = await login({email:this.email, password: this.password})
+                const data = await login({email:this.email, password: this.password})
                 setAuth(data)
                 this.$router.push({name: 'recent'}) 
             }

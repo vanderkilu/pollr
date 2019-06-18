@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      poll: null,
+      poll: {title: '', category: {name: ''}, user: {profile: ''}}, //mock poll
       pollClass: "po-",
       options: [],
       increment: 0,
@@ -89,14 +89,14 @@ export default {
       return instance.votes.length;
     },
     async getComments() {
-      let comments = await getAllComment(this.id);
+      const comments = await getAllComment(this.id);
       this.comments = comments.data;
     },
     async vote(option) {
       if (!this.voted) {
-        let data = await doVote(this.id, option._id);
-        let message = { count: 0, option: data.data.pollOption };
-        let type = data.data.type;
+        const data = await doVote(this.id, option._id);
+        const message = { count: 0, option: data.data.pollOption };
+        const type = data.data.type;
         if (type === "increase") {
           message.count++;
           this.updateVoteCount();
@@ -112,13 +112,13 @@ export default {
       return this.generateTotalVote(option);
     },
     async getData() {
-      let pollData = await getPoll(this.id);
-      let optionData = await getAllOptionsForPoll(this.id);
+      const pollData = await getPoll(this.id);
+      const optionData = await getAllOptionsForPoll(this.id);
       this.poll = pollData.data;
       this.options = optionData.data;
     },
     async createComment() {
-      let comment = await commentCreate(this.id, { text: this.comment });
+      const comment = await commentCreate(this.id, { text: this.comment });
       this.socket.emit("COMMENT", comment.data);
       this.comment = "";
     }
@@ -234,7 +234,7 @@ export default {
 .comment__title {
   font-size: 2rem;
   color: #212121;
-  font-weight: 100;
+  font-weight: 600;
 }
 .btn {
   padding: 2rem 4rem;

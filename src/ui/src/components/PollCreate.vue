@@ -53,7 +53,7 @@
                     return;
                 }
                 let data = {title: this.title,pollOptions: this.alts, category:this.selected}
-                let result = await createPoll(data)
+                await createPoll(data)
                 this.$router.push({name: 'polls', params: {id: this.selected}})
             },
             async getCategories() {

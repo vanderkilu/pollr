@@ -13,7 +13,7 @@ export default {
     },
     methods: {
         async getPolls() {
-            let data = await getAllPollsForCategory(this.$route.params.id)
+            const data = await getAllPollsForCategory(this.$route.params.id)
             this.polls = data.data
         },
     },

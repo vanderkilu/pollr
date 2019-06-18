@@ -24,13 +24,13 @@ export default {
     },
     computed: {
         liked() {
-            let hasLiked = this.comment.likes.find(id => id === getAuth().userId )
+            const hasLiked = this.comment.likes.find(id => id === getAuth().userId )
             return (hasLiked) ? true : false
         }
     },
     methods: {
         async toggleCount() {
-            let {data} = await likeToggle(this.comment._id)
+            const {data} = await likeToggle(this.comment._id)
             this.likes += data.data
             if (data.data === -1) {
                 this.hasLiked = false 

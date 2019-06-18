@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         async getPolls() {
-            let data = await getPollsForUser(getAuth().userId)
+            const data = await getPollsForUser(getAuth().userId)
             this.polls = data.data
         }
     },

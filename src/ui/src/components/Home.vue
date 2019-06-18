@@ -39,7 +39,7 @@ export default {
           return this.classes[num]
       },
       async getCategories() {
-          let data = await getAllCategory()
+          const data = await getAllCategory()
           this.categories = data.data
       }
   },

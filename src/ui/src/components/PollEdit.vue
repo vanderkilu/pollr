@@ -18,8 +18,11 @@
 
 
 <script>
-import axios from 'axios'
-import {getPoll, getAllOptionsForPoll,updatePoll, updatePollOption, deletePoll} from '../api'
+import{ getPoll, 
+        getAllOptionsForPoll,
+        updatePoll, 
+        updatePollOption, 
+        deletePoll } from '../api'
 export default {
     data() {
         return {
@@ -31,23 +34,23 @@ export default {
     },
     methods: {
         async getOptions() {
-            let options = await getAllOptionsForPoll(this.id)
+            const options = await getAllOptionsForPoll(this.id)
             this.options = options.data
         },
         async thisPoll() {
-            let poll = await getPoll(this.id)
+            const poll = await getPoll(this.id)
             this.poll = poll.data
         },
         async updatePoll() {
             const pollData = {
                 poll: this.poll,
             }
-            let pollUpdate = await updatePoll(this.id, pollData)
+            await updatePoll(this.id, pollData)
             Promise.all(this.options.map((option)=> updatePollOption(this.id, {option:option})))
-                    .then((values)=> this.$router.push({name: 'poll', params: {id: this.id}}))
+                    .then(()=> this.$router.push({name: 'poll', params: {id: this.id}}))
         },
         async removePoll() {
-            let poll = await deletePoll(this.id)
+            await deletePoll(this.id)
             this.$router.push({name: 'manage'})
         }
     },
