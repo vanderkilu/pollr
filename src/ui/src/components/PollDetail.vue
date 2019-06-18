@@ -79,7 +79,9 @@ export default {
   },
   methods: {
     percent(option) {
-      return this.updateOptionCount(option) / this.totalPollVote * 100;
+      const total = this.totalPollVote
+      if (total === 0) return 0
+      return this.updateOptionCount(option) / total  * 100;
     },
     async updateVoteCount() {
       const data = await updateCount(this.id);

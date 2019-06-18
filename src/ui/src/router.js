@@ -83,7 +83,10 @@ export default new Router({
           name: 'edit',
           component: PollEdit,
         },
-      ]
+      ],
+      scrollBehavior () {
+        return { x:0, y:0 }
+      }
     }
   ]
 });
