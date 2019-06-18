@@ -266,6 +266,7 @@ export default {
   width: 0;
   height: 1rem;
   background-color: #673ab7;
+  border-radius: 2rem;
 }
 @media only screen and (max-width: 900px) {
   .options {
