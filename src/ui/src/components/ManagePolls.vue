@@ -1,6 +1,7 @@
 <template>
     <div>
         <p class="text">Edit / Delete poll </p>
+        <p class="no-poll" v-if="polls.length === 0"> You currently have no polls </p>
         <app-poll-card :polls="polls" path="edit"></app-poll-card>
     </div>
     
@@ -40,5 +41,11 @@ export default {
     margin-top: 8rem;
     padding: 2rem;
     background-color: white;
+}
+.no-poll {
+    margin-top: 2rem;
+    font-size: 1.7rem;
+    color: #212121;
+    text-align: center;
 }
 </style>
