@@ -7,7 +7,7 @@
             asked by
             <span class="question__user">{{poll.user.profile}}</span>
             on
-            <span class="question__time">april 2016</span>
+            <span class="question__time">{{poll.created | cleanDate }}</span>
         </div>
     </div>
     <div class="options" >

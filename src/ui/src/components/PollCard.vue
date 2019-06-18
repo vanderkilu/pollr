@@ -4,7 +4,7 @@
             <div class="poll-card">
                 <span class="poll-card__category">{{poll.category.name}}</span>
                 <h1 class="poll-card__text ">{{poll.title}}</h1>
-                <p class="poll-card__time">created on 18th july 1990 </p>
+                <p class="poll-card__time">created on {{poll.created | cleanDate}} </p>
                 <p class="poll-card__votes">{{poll.count}} votes</p>
                 <slot></slot>
             </div>
