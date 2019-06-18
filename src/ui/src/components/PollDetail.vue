@@ -81,7 +81,7 @@ export default {
     percent(option) {
       const total = this.totalPollVote
       if (total === 0) return 0
-      return this.updateOptionCount(option) / total  * 100;
+      return Math.floor(this.updateOptionCount(option) / total  * 100);
     },
     async updateVoteCount() {
       const data = await updateCount(this.id);
