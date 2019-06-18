@@ -19,6 +19,7 @@
         flex-direction: column;
         align-items: center;
         margin-top: 2rem;
+        margin-bottom: 5rem;
     }
     .auth-container {
         width: 60%;

@@ -23,7 +23,6 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
     box-shadow: 0 1rem 2rem rgba(0,0,0,0.04);
-    border-radius: 4rem;
     background-color: white;
 }
 .content-left {
@@ -35,6 +34,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
 }
 .content-left__text-bold {
     font-size: 3rem;
@@ -54,6 +54,7 @@
 }
 .content-right  {
     padding: 5rem 10rem;
+    border-radius: 5px;
 }
 .auth-form {
     display: flex;
