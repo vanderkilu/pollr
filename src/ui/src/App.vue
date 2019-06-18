@@ -3,8 +3,18 @@
       <transition name="fade" mode="out-in">
          <router-view></router-view>
       </transition>
+      <app-footer></app-footer>
   </div>
 </template>
+
+<script>
+import Footer from './components/Footer'
+export default {
+  components: {
+    appFooter: Footer
+  }
+}
+</script>
 
 <style>
   *,

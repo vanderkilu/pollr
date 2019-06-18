@@ -30,7 +30,7 @@
             }
         },
         components: {
-            appHeader: HeaderMain
+            appHeader: HeaderMain,
         },
     }
 </script>
