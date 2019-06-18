@@ -68,7 +68,7 @@ export default {
     box-shadow: 0 1rem 2rem rgba(0,0,0,0.04);
     display: grid;
     grid-template-columns: 3fr 1fr;
-    margin: 10rem 0;
+    margin: 5rem 0;
 }
 .form {
     padding: 8rem 3rem;

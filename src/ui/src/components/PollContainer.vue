@@ -6,7 +6,7 @@
            </router-link>
             <router-link :to="{name:'recent'}" class="nav__link" >Recent polls</router-link>
             <router-link :to="{name: 'create'}" class="nav__link" exact>Create Poll</router-link>
-            <router-link :to="{name: 'popular'}" class="nav__link">Trending Polls</router-link>
+            <router-link :to="{name: 'popular'}" class="nav__link">Most Voted Polls</router-link>
             <router-link :to="{name: 'manage'}" class="nav__link" exact>Manage your Polls</router-link>
     </div>
     <nav class="navigation">

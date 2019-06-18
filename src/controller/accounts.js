@@ -25,8 +25,11 @@ exports.users = (req, res) => {
 }
 
 exports.getPollsForUser = (req, res)=> {
-    Poll.find({user: req.params.user_id}, (err, polls)=> {
-        if (err) return res.send(err)
-        return res.json(polls)
-    })
+    Poll.find({user: req.params.user_id})
+        .populate('category')
+        .populate('user')
+        .exec((err, polls)=> {
+            if (err) return res.json(err)
+            return res.json(polls)
+        })
 }
