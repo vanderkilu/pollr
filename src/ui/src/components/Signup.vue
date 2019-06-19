@@ -45,7 +45,7 @@ export default {
                 await signup(credentials)
                 const loginData = await login(credentials)
                 setAuth(loginData)
-                this.$router.push({name: 'pollContainer'})
+                this.$router.go(-1)
             }
             catch(err) {
                 setTimeout(()=> this.isError = false, 3000)

@@ -39,7 +39,7 @@ export default {
             try {
                 const data = await login({email:this.email, password: this.password})
                 setAuth(data)
-                this.$router.push({name: 'recent'}) 
+                this.$router.go(-1) 
             }
             catch(err) {
                 setTimeout(()=> this.isError = false, 3000)

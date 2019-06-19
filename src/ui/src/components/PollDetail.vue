@@ -80,12 +80,13 @@ export default {
   computed: {
     totalPollVote() {
       return this.increment + this.poll.count;
-    }
-  },
-  methods: {
+    },
     notAuthenticated() {
       return localStorage.getItem('jwt') === null
     },
+  },
+  methods: {
+    
     percent(option) {
       const total = this.totalPollVote
       if (total === 0) return 0

@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <app-header-main>
-      <router-link :to="{name: 'create'}" class="btn-cta">create poll now</router-link>
+      <router-link :to="{name: 'recent'}" class="btn-cta">check recent polls </router-link>
       <router-link :to="{name: 'login'}" class="login">Login here 👉</router-link>
     </app-header-main>
 
