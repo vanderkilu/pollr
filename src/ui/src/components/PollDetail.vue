@@ -11,6 +11,7 @@
         </div>
     </div>
     <div class="options" >
+      <p class="flash" v-show="flashed">You have already voted </p>
       <div class="poll-option" v-for="(option,i) in options" :key="i" @click="vote(option)">
         <h3 class="poll-option__text">{{option.value}}</h3>
         <div class="progress">
@@ -61,7 +62,8 @@ export default {
       isUser: false,
       comments: [],
       comment: "",
-      isLoading: true
+      isLoading: true,
+      flashed: false
     };
   },
   mounted() {
@@ -105,6 +107,9 @@ export default {
         if (type === "increase") {
           message.count++;
           this.updateVoteCount();
+        }
+        else {
+          this.flashed = true
         }
         this.socket.emit("vote", message);
         this.voted = true;
@@ -266,7 +271,14 @@ export default {
   background-color: #e0e0e0;
   border-radius: 3rem;
 }
-
+.flash {
+  padding: 1rem 2rem;
+  background-color: #f9fbe7;
+  color: #424242;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  width: 40%;
+}
 .bar {
   width: 0;
   height: 1rem;
