@@ -51,14 +51,8 @@
         color: white;
     }
     .btn-cta {
-        padding: 2rem 4rem;
-        border: none;
-        border-radius: 3px;
-        box-shadow: 0 1rem 2rem rgba(0,0,0,0.01);
         background-color: #ede7f6;
         color: #673ab7;
-        font-size: 1.4rem;
-        transition: all 0.4s
     }
     .btn-cta:hover {
         color: gray;

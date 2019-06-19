@@ -37,6 +37,14 @@
   color: #673ab7;
   margin-left: 1rem;
 }
+.btn {
+  padding: 2rem 4rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.01);
+  font-size: 1.4rem;
+  transition: all 0.4s;
+}
 .logo {
   width: 4rem;
   height: 4rem;

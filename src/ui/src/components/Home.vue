@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <app-header-main>
-      <router-link :to="{name: 'recent'}" class="btn-cta">check recent polls </router-link>
+      <router-link :to="{name: 'recent'}" class="btn-cta btn">check recent polls </router-link>
       <router-link :to="{name: 'login'}" class="login">Login here 👉</router-link>
     </app-header-main>
 
@@ -14,7 +14,8 @@
             <p class="left__side-text"><i class="check">&#10004;</i>Sign up or login </p>
             <p class="left__side-text"><i class="check">&#10004;</i>Vote simply by clicking on one of the poll options </p>
             <p class="left__side-text"><i class="check">&#10004;</i> You can also easily create your own polls </p>
-             <p class="left__side-text"><i class="check">&#10004;</i> See results in real time </p>
+            <p class="left__side-text"><i class="check">&#10004;</i> See results in real time </p>
+            <router-link :to="{name: 'create'}" class="btn btn-colored">create a poll now </router-link>
           </ul>
         </div>
         <div class="right__side">
@@ -116,6 +117,14 @@ export default {
 .check  {
   color: #673ab7;
   margin-right: 1rem;
+}
+.btn-colored {
+  background-color: #673ab7;
+  color:#ede7f6;
+  width: 15rem;
+}
+.btn-cta:hover {
+  color: gray;
 }
 /**/
 
