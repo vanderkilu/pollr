@@ -21,14 +21,6 @@
 <script>
     import HeaderMain from './HeaderMain.vue'
     export default {
-        beforeRouteEnter (to, from, next) {
-            if (localStorage.getItem('jwt') === null) {
-                next({name: 'login'});
-            }
-            else {
-                next();
-            }
-        },
         components: {
             appHeader: HeaderMain,
         },

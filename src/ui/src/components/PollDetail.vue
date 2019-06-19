@@ -83,6 +83,9 @@ export default {
     }
   },
   methods: {
+    notAuthenticated() {
+      return localStorage.getItem('jwt') === null
+    },
     percent(option) {
       const total = this.totalPollVote
       if (total === 0) return 0
@@ -100,6 +103,7 @@ export default {
       this.comments = comments.data;
     },
     async vote(option) {
+      if (this.notAuthenticated) return this.$router.push({name: 'login'});
       if (!this.voted) {
         const data = await doVote(this.id, option._id);
         const message = { count: 0, option: data.data.pollOption };
@@ -129,6 +133,7 @@ export default {
       this.isLoading = false
     },
     async createComment() {
+      if (this.notAuthenticated) return this.$router.push({name: 'login'});
       const comment = await commentCreate(this.id, { text: this.comment });
       this.socket.emit("COMMENT", comment.data);
       this.comment = "";

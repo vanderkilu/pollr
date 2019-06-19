@@ -27,7 +27,9 @@
 </template>
 <script>
     import { createPoll,getAllCategory } from '../api'
+    import AuthNeeded from './mixin/AuthNeeded'
     export default {
+        mixins: [AuthNeeded],
         data() {
             return {
                 poll: '',

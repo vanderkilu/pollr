@@ -14,7 +14,9 @@ import { getPollsForUser } from '../api'
 import { getAuth } from '../helpers'
 import PollCard from './PollCard.vue'
 import Loader from './Loader.vue'
+import AuthNeeded from './mixin/AuthNeeded'
 export default {
+    mixins: [AuthNeeded],
     data() {
         return {
             polls: [],

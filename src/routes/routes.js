@@ -25,22 +25,22 @@ module.exports = (app) => {
 
     //poll routes
     pollRoutes.post('/create',authenticate,PollController.createPoll)
-    pollRoutes.get('/category/:category_id/polls',authenticate,PollController.getPollsForCategory)
+    pollRoutes.get('/category/:category_id/polls',PollController.getPollsForCategory)
     pollRoutes.get('/categories',PollController.getAllCategory)
-    pollRoutes.get('/recent', authenticate, PollController.getRecentPolls)
-    pollRoutes.get('/popular', authenticate, PollController.getPopularPolls)
+    pollRoutes.get('/recent',  PollController.getRecentPolls)
+    pollRoutes.get('/popular', PollController.getPopularPolls)
     pollRoutes.post('/category',authenticate,PollController.createCategory)
-    pollRoutes.get('/', authenticate, PollController.getAllPoll)
-    pollRoutes.get('/:poll_id', authenticate, PollController.getPoll)
+    pollRoutes.get('/',   PollController.getAllPoll)
+    pollRoutes.get('/:poll_id',  PollController.getPoll)
     pollRoutes.put('/:poll_id', authenticate, PollController.updatePoll)
     pollRoutes.delete('/:poll_id', authenticate, PollController.deletePoll)
     pollRoutes.post('/:poll_id/vote',authenticate,PollController.vote)
     pollRoutes.put('/:poll_id/update-count',authenticate,PollController.updatePollCount)
-    pollRoutes.get('/:poll_id/polloptions', authenticate, PollController.getPollOptionsForPoll)
+    pollRoutes.get('/:poll_id/polloptions', PollController.getPollOptionsForPoll)
     pollRoutes.put('/:poll_id/polloptions', authenticate, PollController.updatePollOption)
 
     //comment routes
-    pollRoutes.get('/:poll_id/comments',authenticate,CommentController.getAllCommentForPoll)
+    pollRoutes.get('/:poll_id/comments',CommentController.getAllCommentForPoll)
     pollRoutes.post('/:poll_id/comments',authenticate,CommentController.createComment)
     pollRoutes.get('/comment/reply',authenticate,CommentController.getAllReplyForComment),
     pollRoutes.post('/comment/reply',authenticate,CommentController.createReply)

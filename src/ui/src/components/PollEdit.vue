@@ -23,7 +23,9 @@ import{ getPoll,
         updatePoll, 
         updatePollOption, 
         deletePoll } from '../api'
+import AuthNeeded from './mixin/AuthNeeded'
 export default {
+    mixins: [AuthNeeded],
     data() {
         return {
             categories: [],
