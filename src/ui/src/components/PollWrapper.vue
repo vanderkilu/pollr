@@ -1,14 +1,21 @@
 <template>
-    <app-poll-card :polls="polls" path="poll"></app-poll-card>
+    <div>
+        <app-poll-card :polls="polls" path="poll"></app-poll-card>
+        <app-loader v-show="isLoading"></app-loader>
+    </div>
+  
+    
 </template>
 
 <script>
 import PollCard from './PollCard.vue'
+import Loader from './Loader.vue'
 export default {
     props: ['name'],
     data() {
         return {
-            polls: []
+            polls: [],
+            isLoading: true
         }
     },
     computed: {
@@ -18,13 +25,15 @@ export default {
         async getPolls() {
             const data = await this.name()
             this.polls = data.data
+            this.isLoading = false
         }
     },
     mounted() {
         this.getPolls()
     },
     components: {
-        appPollCard: PollCard
+        appPollCard: PollCard,
+        appLoader: Loader
     }
 }
     

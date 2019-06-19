@@ -29,6 +29,8 @@
       </form>
       <app-comment-container v-for="comment in comments" :key="comment.id" :comment="comment"></app-comment-container>
     </div>
+
+    <app-loader v-show="isLoading"></app-loader>
   </div>
 </template>
 
@@ -36,6 +38,7 @@
 <script>
 import io from "socket.io-client";
 import CommentContainer from "./CommentContainer.vue";
+import Loader from './Loader.vue'
 import {
   getPoll,
   getAllOptionsForPoll,
@@ -50,7 +53,6 @@ export default {
     return {
       id: this.$route.params.id,
       poll: {title: '', category: {name: ''}, user: {profile: ''}}, //mock poll
-      pollClass: "po-",
       options: [],
       increment: 0,
       socket: io("http://localhost:3000"),
@@ -58,7 +60,8 @@ export default {
       voted: false,
       isUser: false,
       comments: [],
-      comment: ""
+      comment: "",
+      isLoading: true
     };
   },
   mounted() {
@@ -118,6 +121,7 @@ export default {
       const optionData = await getAllOptionsForPoll(this.id);
       this.poll = pollData.data;
       this.options = optionData.data;
+      this.isLoading = false
     },
     async createComment() {
       const comment = await commentCreate(this.id, { text: this.comment });
@@ -126,7 +130,8 @@ export default {
     }
   },
   components: {
-    appCommentContainer: CommentContainer
+    appCommentContainer: CommentContainer,
+    appLoader: Loader
   }
 };
 </script>

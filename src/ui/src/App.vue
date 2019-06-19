@@ -33,6 +33,10 @@
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+.emoji {
+  color: #673ab7;
+  margin-left: 1rem;
+}
 .logo {
   width: 4rem;
   height: 4rem;
