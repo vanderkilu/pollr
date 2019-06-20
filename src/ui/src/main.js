@@ -4,7 +4,7 @@ import router from './router'
 import { formatDate } from './helpers'
 
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 Vue.filter('cleanDate', (value)=> {
   return formatDate(value)
 })

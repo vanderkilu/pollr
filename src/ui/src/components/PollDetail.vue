@@ -56,7 +56,7 @@ export default {
       poll: {title: '', category: {name: ''}, user: {profile: ''}}, //mock poll
       options: [],
       increment: 0,
-      socket: io("http://localhost:3000"),
+      socket: io(),
       optionToUpdate: "",
       voted: false,
       isUser: false,
