@@ -10,7 +10,8 @@
                     <input type="text" placeholder="name" class="input" v-model="profile" required>
                     <input type="email" placeholder="email" class="input" v-model="email" required>
                     <input type="password" placeholder="password" class="input" v-model="password" required>
-                    <button class="btn-auth btn-auth-colored">sign up </button>
+                    <div class="loader__small" v-if="isLoading"></div>
+                    <button class="btn-auth btn-auth-colored" v-else>sign up </button>
                 </form>
             </div>
             <div class="content-left">
@@ -32,11 +33,13 @@ export default {
             email: '',
             password: '',
             profile: '',
-            isError: false
+            isError: false,
+            isLoading: false
         }
     },
     methods: {
         async register() {
+            this.isLoading = true
             const credentials = {
                  email:this.email, 
                  password:this.password,
@@ -45,11 +48,13 @@ export default {
                 await signup(credentials)
                 const loginData = await login(credentials)
                 setAuth(loginData)
-                this.$router.go(-1)
+                this.isLoading = false
+                this.$router.push({name: 'home'})
             }
             catch(err) {
+                this.isLoading = false
                 setTimeout(()=> this.isError = false, 3000)
-                 this.isError = true
+                this.isError = false
             } 
         }
     }
@@ -63,5 +68,18 @@ export default {
 
 <style scoped>
     @import url(../assets/auth.css);
+    .loader__small {
+        border: 0.6rem solid #f3f3f3;
+        border-top: 0.6rem solid #4a148c;
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 
