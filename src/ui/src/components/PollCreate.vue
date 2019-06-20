@@ -2,7 +2,7 @@
     <div class="wrapper">
         <form  class="form" @submit.prevent="makePoll">
             <p class="wrapper__text"> Let us poll together <span class="emoji"> 😇</span> </p>
-            <input type="text" class="input" placeholder="question" v-model="title">
+            <input type="text" class="input" placeholder="question" v-model="title" required>
             <transition-group name="list">
                     <input type="text" class="input" :placeholder="opt.value + i" 
                      v-for="(opt,i) in alts" :key="i"

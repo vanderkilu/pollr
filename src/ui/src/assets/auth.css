@@ -121,6 +121,12 @@
         font-size: 2rem;
     }
     .btn-auth {
-        padding: 1.8rem 3rem;
+        display: inline-block;
+        padding: 1.8rem 6rem;
+        font-size: 1.6rem;
+    }
+    .content-right  {
+        padding: 5rem;
+        border-radius: 5px;
     }
 }

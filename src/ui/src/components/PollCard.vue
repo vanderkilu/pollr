@@ -79,6 +79,13 @@ export default {
 @media only screen and (max-width : 900px) { 
   .wrapper {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 5rem;
+  }
+  .poll-card {
+      padding: 2rem 4rem;
+  }
+  .poll-card__text {
+      font-size: 1.8rem;
   }
 }
 </style>

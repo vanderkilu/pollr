@@ -25,7 +25,7 @@
     <div class="comment">
       <h3 class="comment__title">Responses</h3>
       <form class="comment__form" @submit.prevent="createComment">
-        <textarea type="text" class="comment__input" v-model="comment"></textarea>
+        <textarea type="text" class="comment__input" v-model="comment" required></textarea>
         <button class="btn">publish</button>
       </form>
       <app-comment-container v-for="comment in comments" :key="comment.id" :comment="comment"></app-comment-container>
@@ -294,6 +294,28 @@ export default {
 @media only screen and (max-width: 900px) {
   .options {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  .poll-option > *{
+    margin: 0.5rem;
+  }
+  .question {
+    width: 90%;
+    padding: 0 2rem;
+    margin-bottom: 6rem;
+  }
+  .question__text {
+    font-size: 2rem;
+    color: #212121;
+    margin-top: 2rem;
+  }
+  .flash {
+    width: 80%;
+  }
+  .question__detail {
+    font-size: 1.5rem;
+  }
+  .comment {
+    margin-top: 15rem;
   }
 }
 </style>

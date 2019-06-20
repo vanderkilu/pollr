@@ -52,11 +52,12 @@
 }
 @media only screen and (max-width : 900px) {
     .nav {
-        flex-wrap: wrap;
-        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .navigation {
-        width: 70%;
+        width: 90%;
     }
 }
 

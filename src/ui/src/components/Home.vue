@@ -163,11 +163,25 @@ export default {
 }
 @media only screen and (max-width : 900px) { 
   .category {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
   }
   .wrapper__main {
     padding: 5rem;
-    background-color: whitesmoke;
+  }
+  .login {
+    display: inline-block;
+    margin-top: 3rem;
+  }
+  .sides {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 10rem;
+  }
+  .wrapper__easy {
+    padding: 0 5rem;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
 }
 </style>
