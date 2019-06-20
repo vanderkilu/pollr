@@ -2,7 +2,7 @@
     <div class="comment-container">
         <span class="comment__user-initial">P</span>
         <p class="comment__username">{{comment.user.profile}}</p>
-        <p class="comment__created">12th Nov, 2018</p>
+        <p class="comment__created">{{comment.created | cleanDate }}</p>
         <p class="comment__text">{{comment.text}}</p>
         <span class="comment__likes-count" @click="toggleCount">
             <i class="heart" :class="{colored: hasLiked}"> &hearts; </i>
