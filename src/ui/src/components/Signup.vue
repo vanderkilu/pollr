@@ -4,12 +4,12 @@
              <div class="content-right">
                 <h3 class="content-right__text-bold"> create an account </h3>
                 <transition-group name="blank" mode="out-in">
-                    <h5 class="error" v-if="isError"> please, do not leave any fields blank </h5>
+                    <h5 class="error" v-if="isError"> password is too similar to username/email </h5>
                 </transition-group>
                 <form class="auth-form" @submit.prevent="register()">
-                    <input type="text" placeholder="name" class="input" v-model="profile">
-                    <input type="email" placeholder="email" class="input" v-model="email">
-                    <input type="password" placeholder="password" class="input" v-model="password">
+                    <input type="text" placeholder="name" class="input" v-model="profile" required>
+                    <input type="email" placeholder="email" class="input" v-model="email" required>
+                    <input type="password" placeholder="password" class="input" v-model="password" required>
                     <button class="btn-auth btn-auth-colored">sign up </button>
                 </form>
             </div>

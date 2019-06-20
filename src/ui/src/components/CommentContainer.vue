@@ -26,10 +26,15 @@ export default {
         liked() {
             const hasLiked = this.comment.likes.find(id => id === getAuth().userId )
             return (hasLiked) ? true : false
-        }
+        },
+        notAuthenticated() {
+            return localStorage.getItem('jwt') === null
+        },
     },
     methods: {
         async toggleCount() {
+            if (this.notAuthenticated) 
+                return this.$router.push({name: 'login'})
             const {data} = await likeToggle(this.comment._id)
             this.likes += data.data
             if (data.data === -1) {
