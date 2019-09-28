@@ -2,6 +2,8 @@
 This is a real time voting application.
 It has realtime commenting feature
 
+live demo [here](http://pollr.herokuapp.com/)
+
 ##  Project stack
 1. Express.js(node.js)
 2. Passport for authentication
