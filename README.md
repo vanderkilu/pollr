@@ -1,17 +1,23 @@
-# pollr(server)
-this is the server side to my polling/voting application that i i built as a challenge to the #100daysofcode challenge
+# pollr
+This is a real time voting application.
+It has realtime commenting feature
 
-It is often said to become an expert, you should continue to practice. This is one of my "practice project" 
-check it out on [pollr.herokuapp.com](https://pollr.herokuapp.com/)
+##  Project stack
+1. Express.js(node.js)
+2. Passport for authentication
+3. Vue.js for frontend related tasks
+4. All those beautiful styles are in vanilla css
+5. Socket.io for all real time features
 
-## what i learnt building this project
+## Features
+1. Realtime voting
+2. Realtime commenting
+3. See trending polls, recent polls
+4. Post and manage your polls
 
-1. Authentication in express with jwt tokens
-2. practical understanding of models + mongodb documents and subdocuments
-3. creating restful api with express(node.js)
-4. Permission
-5. testing using mocha and chai
-6. cors
+## Future Recommends
+1. Anonymous voting
+2. Ip address instead of email as extra layer to avoid multiple voting
 
 ## Project setup
 ```
