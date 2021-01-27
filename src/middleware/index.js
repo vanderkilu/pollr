@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
-import Poll from '../models/polls';
+
 
 const TOKENTIME = 60*60*24*30;
 const SECRET = 'supersecret';
 
-let authenticate = expressJwt({secret: SECRET});
+let authenticate = expressJwt({secret: SECRET, algorithms: ['RS256']});
 
 let generateAccessToken = (req, res, next) => {
     req.token = req.token || {};
