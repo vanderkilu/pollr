@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "socket.io-client": "^2.1.1",
+    "socket.io-client": "^2.5.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },
